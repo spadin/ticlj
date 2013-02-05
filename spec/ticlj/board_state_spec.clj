@@ -13,4 +13,6 @@
   (it "return o when playe o has selected that index"
     (set-mark-at-index o-mark 0)
     (should= o-mark
-             (mark-at-index 0))))
+             (mark-at-index 0)))
+  (it "throws an error when mark is not recognized"
+    (should-throw Exception (set-mark-at-index "y" 0))))

@@ -4,4 +4,5 @@
   :dependencies [[org.clojure/clojure "1.4.0"]
                  [speclj "2.5.0"]]
   :plugins [[speclj "2.5.0"]]
-  :test-paths ["spec/"])
+  :test-paths ["spec/"]
+  :main ticlj.game)

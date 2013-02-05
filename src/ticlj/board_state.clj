@@ -10,7 +10,7 @@
 
 (def ^:dynamic board (ref (empty-board)))
 
-(defn reset-board [] 
+(defn reset-board []
   (dosync (ref-set board (empty-board))))
 
 (defn set-mark-at-index [mark index]

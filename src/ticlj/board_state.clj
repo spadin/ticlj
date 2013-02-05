@@ -4,15 +4,15 @@
 (def o-mark "o")
 (def nomark " ")
 
-(defn empty-board [] [nomark nomark nomark
-                      nomark nomark nomark
-                      nomark nomark nomark])
+(def empty-board [nomark nomark nomark
+                  nomark nomark nomark
+                  nomark nomark nomark])
 
-(def board (ref (empty-board)))
+(def board (ref empty-board))
 
 (defn reset-board []
   (dosync
-    (ref-set board (empty-board))))
+    (ref-set board empty-board)))
 
 (defn set-mark-at-index [mark index]
   (dosync

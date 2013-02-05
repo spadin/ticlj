@@ -8,7 +8,7 @@
                       nomark nomark nomark
                       nomark nomark nomark])
 
-(def ^:dynamic board (ref (empty-board)))
+(def board (ref (empty-board)))
 
 (defn reset-board []
   (dosync

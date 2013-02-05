@@ -12,7 +12,7 @@
        (board/mark-at-index c)
        " "))
 
-(defn print-board [board]
+(defn print-board []
   (println (line-string 0 1 2))
   (println separator)
   (println (line-string 3 4 5))

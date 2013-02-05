@@ -24,4 +24,4 @@
 
   (it "prints an empty board"
     (should= "   |   |   \n---|---|---\n   |   |   \n---|---|---\n   |   |   \n"
-             (with-out-str (print-board board/board)))))
+             (with-out-str (print-board)))))

@@ -1,4 +1,4 @@
-(ns ticlj.board-state)
+(ns ticlj.model.board)
 
 (def x-mark "x")
 (def o-mark "o")

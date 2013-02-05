@@ -1,5 +1,5 @@
-(ns ticlj.board-state-spec
-  (:use [speclj.core] [ticlj.board-state]))
+(ns ticlj.model.board-spec
+  (:use [speclj.core] [ticlj.model.board]))
 
 (describe "ticlj.board-state"
   (before (reset-board))

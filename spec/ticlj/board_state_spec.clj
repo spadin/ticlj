@@ -10,7 +10,7 @@
     (set-mark-at-index x-mark 0)
     (should= x-mark
              (mark-at-index 0)))
-  (it "return o when playe o has selected that index"
+  (it "return o when player o has selected that index"
     (set-mark-at-index o-mark 0)
     (should= o-mark
              (mark-at-index 0)))

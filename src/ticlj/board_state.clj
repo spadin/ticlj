@@ -21,7 +21,9 @@
 (defn set-mark-at-index [mark index]
   (if (allowed-mark? mark)
     (dosync
-      (ref-set board (concat (take index @board) [mark] (rest (drop index @board)))))
+      (ref-set board (concat (take index @board)
+                             [mark]
+                             (rest (drop index @board)))))
     (throw (Exception. "Invalid mark"))))
 
 (defn mark-at-index [index]

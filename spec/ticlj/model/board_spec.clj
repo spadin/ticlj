@@ -1,7 +1,7 @@
 (ns ticlj.model.board-spec
   (:use [speclj.core] [ticlj.model.board]))
 
-(describe "ticlj.board-state"
+(describe "ticlj.model.board"
   (before (reset-board))
 
   (it "returns blank space when board index is not occupied"

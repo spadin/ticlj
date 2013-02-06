@@ -9,4 +9,56 @@
     (should= board/o-mark
              (next-player board/x-mark))
     (should= board/x-mark
-             (next-player board/o-mark))))
+             (next-player board/o-mark)))
+
+  (it "determines that x is the winner"
+    (board/set-mark-at-index board/x-mark 0)
+    (board/set-mark-at-index board/x-mark 1)
+    (board/set-mark-at-index board/x-mark 2)
+    (should= board/x-mark
+             (winner)))
+
+  (it "determines that o is the winner"
+    (board/set-mark-at-index board/o-mark 0)
+    (board/set-mark-at-index board/o-mark 1)
+    (board/set-mark-at-index board/o-mark 2)
+    (should= board/o-mark
+             (winner)))
+
+  (it "determines that there is a winner"
+    (board/set-mark-at-index board/x-mark 0)
+    (board/set-mark-at-index board/o-mark 3)
+    (board/set-mark-at-index board/x-mark 1)
+    (board/set-mark-at-index board/o-mark 4)
+    (board/set-mark-at-index board/x-mark 2)
+    (should (winner?)))
+
+  (it "determines that there is no winner"
+    (should= false
+             (winner?)))
+
+  (it "should know that the game has not ended"
+    (should= false
+             (gameover?)))
+
+  (it "should know the game is over when there is a winner"
+    (board/set-mark-at-index board/x-mark 0)
+    (board/set-mark-at-index board/o-mark 3)
+    (board/set-mark-at-index board/x-mark 1)
+    (board/set-mark-at-index board/o-mark 4)
+    (board/set-mark-at-index board/x-mark 2)
+    (should= true
+             (gameover?)))
+
+  (it "should know the game is over when the board is full"
+    (board/set-mark-at-index board/x-mark 0)
+    (board/set-mark-at-index board/o-mark 1)
+    (board/set-mark-at-index board/x-mark 2)
+    (board/set-mark-at-index board/o-mark 5)
+    (board/set-mark-at-index board/x-mark 3)
+    (board/set-mark-at-index board/o-mark 6)
+    (board/set-mark-at-index board/x-mark 4)
+    (board/set-mark-at-index board/o-mark 8)
+    (board/set-mark-at-index board/x-mark 7)
+    (should= true
+             (gameover?))))

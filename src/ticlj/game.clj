@@ -37,8 +37,13 @@
   ([] (trampoline play-recur board/x-mark))
   ([mark]
     (printer/print-board)
-    (request-move-recur mark)
-    (play-recur (next-player mark))))
+    (if (gameover?)
+      (if (winner?)
+        (println (str "Game over, " (winner) " has won"))
+        (println "Game over, tied game."))
+      (do
+        (request-move-recur mark)
+        (play-recur (next-player mark))))))
 
 
 (defn start-game []

@@ -4,7 +4,7 @@
 (describe "ticlj.board-state"
   (before (reset-board))
 
-  (it "returns nil when board index is not occupied"
+  (it "returns blank space when board index is not occupied"
     (should= " "
              (mark-at-index 0)))
 

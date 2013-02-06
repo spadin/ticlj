@@ -19,4 +19,7 @@
              (mark-at-index 0)))
 
   (it "throws an error when mark is not recognized"
-    (should-throw Exception (set-mark-at-index "y" 0))))
+    (should-throw Exception (set-mark-at-index "y" 0)))
+
+  (it "throws an error when index is not in proper range"
+    (should-throw Exception (set-mark-at-index x-mark 20))))

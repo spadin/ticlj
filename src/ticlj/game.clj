@@ -9,7 +9,7 @@
   ([] (play-recur board/x-mark))
   ([mark]
     (cli/print-board)
-    (cli/prompt-player mark)
+    (board/set-mark-at-index mark (cli/prompt-player mark))
     (recur (next-player mark))))
 
 (defn start-game []

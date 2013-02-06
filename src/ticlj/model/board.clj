@@ -44,6 +44,3 @@
 
 (defn get-moves [mark]
   (set (remove nil? (map-indexed (fn [idx val] (if (= val mark) idx nil)) @board))))
-
-;Some sample code for later
-;(some #(= (set (filter % (set [1 2 4 5]))) %) winning-combinations)

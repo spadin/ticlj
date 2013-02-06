@@ -23,3 +23,7 @@
 
   (it "throws an error when index is not in proper range"
     (should-throw Exception (set-mark-at-index x-mark 20))))
+  (it "throws an error if you try to pick a spot that's taken"
+    (set-mark-at-index x-mark 0)
+    (should-throw Exception (set-mark-at-index o-mark 0)))
+

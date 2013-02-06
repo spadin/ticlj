@@ -15,7 +15,13 @@
 (defn allowed-mark? [mark] (not (nil? (some #{mark} allowed-marks))))
 
 (defn allowed-index? [index]
-  (and (>= index 0) (<= index 9)))
+  (and (>= index 0) (<= index 8)))
+
+(defn empty-index? [index]
+  (= " " (nth @board index)))
+
+(defn full-board? []
+  (nil? (some #(= " " %) @board)))
 
 (defn reset-board []
   (dosync
@@ -24,12 +30,20 @@
 (defn set-mark-at-index [mark index]
   (if (allowed-index? index)
     (if (allowed-mark? mark)
-     (dosync
-        (ref-set board (concat (take index @board)
-                               [mark]
-                               (rest (drop index @board)))))
+      (if (empty-index? index)
+        (dosync
+          (ref-set board (concat (take index @board)
+                                 [mark]
+                                 (rest (drop index @board)))))
+        (throw (Exception. "Spot taken")))
       (throw (Exception. "Invalid mark")))
     (throw (Exception. "Invalid index"))))
 
 (defn mark-at-index [index]
   (nth @board index))
+
+(defn get-moves [mark]
+  (set (remove nil? (map-indexed (fn [idx val] (if (= val mark) idx nil)) @board))))
+
+;Some sample code for later
+;(some #(= (set (filter % (set [1 2 4 5]))) %) winning-combinations)

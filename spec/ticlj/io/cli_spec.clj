@@ -1,11 +1,6 @@
 (ns ticlj.io.cli-spec
-  (:use [speclj.core] [ticlj.io.cli])
+  (:use [speclj.core] [ticlj.spec-helper] [ticlj.io.cli])
   (:require [ticlj.model.board :as board]))
-
-; helps with passing multiple inputs when using with-in-str
-; http://mikeebert.tumblr.com/post/32243344470/mocking-input-in-clojure-thanks-colin
-(defn make-input [coll]
-  (apply str (interleave coll (repeat "\n"))))
 
 (describe "ticlj.printer.cli"
   (before (board/reset-board))

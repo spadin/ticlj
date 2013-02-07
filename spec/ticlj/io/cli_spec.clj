@@ -15,11 +15,11 @@
 
   (it "rejects invalid input until a valid input is entered"
     (with-out-str (with-in-str (make-input '("bad input" "0"))
-      (should= 0 (prompt-player board/x-mark)))))
+      (should= 0 (prompt-integer "enter an integer")))))
 
   (it "gets user move as an Integer"
     (with-out-str (with-in-str "1"
-      (should= 1 (prompt-player board/x-mark)))))
+      (should= 1 (prompt-integer "enter an interger")))))
 
   (it "return an empty board line string"
     (should= "   |   |   "
@@ -39,5 +39,10 @@
     (board/set-mark-at-index board/o-mark 4)
     (board/set-mark-at-index board/x-mark 7)
     (should= " x |   |   \n---|---|---\n   | o |   \n---|---|---\n   | x |   \n"
-             (with-out-str (print-board)))))
+             (with-out-str (print-board))))
+
+  (it "prompts the user to select a game type"
+    (should= "Please select a game type?\n"
+             (with-out-str (with-in-str "1"
+                (prompt-integer "Please select a game type?"))))))
 

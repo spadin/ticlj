@@ -19,12 +19,12 @@
   (println separator)
   (println (line-string 2)))
 
-(defn prompt-player-recur [mark]
-  (println (str "Player " mark " what is your move?"))
+(defn prompt-integer [message]
+  (println message)
   (try (Integer/parseInt (read-line))
     (catch Exception e
       (println "Invalid input, please try again.")
-      (prompt-player-recur mark))))
+      (prompt-integer message))))
 
 (defn prompt-player [mark]
-  (prompt-player-recur mark))
+  (prompt-integer (str "Player " mark " what is your move?")))

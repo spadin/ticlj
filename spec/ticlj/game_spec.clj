@@ -23,4 +23,8 @@
   (it "prints that o has won the game"
     (should (.contains (with-out-str (with-in-str (make-input '(0 3 1 4 7 5))
                          (play-recur)))
-                       "o has won"))))
+                       "o has won")))
+
+  (it "calls play-recur when game is started"
+    (with-redefs [play-recur (fn [] "play-recur-called")]
+                 (should= "play-recur-called" (start-game)))))

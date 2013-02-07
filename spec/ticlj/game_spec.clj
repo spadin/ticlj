@@ -5,17 +5,22 @@
 (describe "ticlj.game"
   (before (board/reset-board))
 
-  (it "should print that the game is a tie"
+  (it "requests a move until the move is valid"
+    (should (.contains (with-out-str (with-in-str (make-input '("x" 0))
+                         (request-move-recur board/x-mark)))
+                       "Invalid input, please try again.")))
+
+  (it "prints that the game is a tie"
     (should (.contains (with-out-str (with-in-str (make-input '(0 1 2 5 3 6 4 8 7))
-                         (start-game)))
-                        "tied game")))
+                         (play-recur)))
+                       "tied game")))
 
-  (it "should print that x has won the game"
+  (it "prints that x has won the game"
     (should (.contains (with-out-str (with-in-str (make-input '(0 3 1 4 2))
-                         (start-game)))
-                        "x has won")))
+                         (play-recur)))
+                       "x has won")))
 
-  (it "should print that o has won the game"
+  (it "prints that o has won the game"
     (should (.contains (with-out-str (with-in-str (make-input '(0 3 1 4 7 5))
-                         (start-game)))
-                        "o has won"))))
+                         (play-recur)))
+                       "o has won"))))

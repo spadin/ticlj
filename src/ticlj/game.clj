@@ -10,7 +10,7 @@
         (request-move-recur mark))))
 
 (defn play-recur
-  ([] (trampoline play-recur board/x-mark))
+  ([] (play-recur board/x-mark))
   ([mark]
     (printer/print-board)
     (if (rules/gameover?)

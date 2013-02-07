@@ -24,7 +24,8 @@
   (try (Integer/parseInt (read-line))
     (catch Exception e
       (println "Invalid input, please try again.")
-      #(prompt-player-recur mark))))
+      (prompt-player-recur mark))))
 
 (defn prompt-player [mark]
-  (trampoline prompt-player-recur mark))
+  (prompt-player-recur mark))
+  ;(trampoline prompt-player-recur mark))

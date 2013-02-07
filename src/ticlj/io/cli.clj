@@ -28,3 +28,6 @@
 
 (defn prompt-player [mark]
   (prompt-integer (str "Player " mark " what is your move?")))
+
+(defn prompt-game-type []
+  (println "Please select a game.\n1. HvH\n2. HvAI\n3. AIvH"))

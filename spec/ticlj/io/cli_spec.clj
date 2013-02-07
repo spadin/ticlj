@@ -42,7 +42,5 @@
              (with-out-str (print-board))))
 
   (it "prompts the user to select a game type"
-    (should= "Please select a game type?\n"
-             (with-out-str (with-in-str "1"
-                (prompt-integer "Please select a game type?"))))))
-
+    (should= "Please select a game.\n1. HvH\n2. HvAI\n3. AIvH\n"
+             (with-out-str (with-in-str "1" (prompt-game-type))))))

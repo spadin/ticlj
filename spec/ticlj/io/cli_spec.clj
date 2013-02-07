@@ -23,4 +23,12 @@
 
   (it "prints an empty board"
     (should= "   |   |   \n---|---|---\n   |   |   \n---|---|---\n   |   |   \n"
+             (with-out-str (print-board))))
+
+  (it "prints a board with some moves"
+    (board/set-mark-at-index board/x-mark 0)
+    (board/set-mark-at-index board/o-mark 4)
+    (board/set-mark-at-index board/x-mark 7)
+    (should= " x |   |   \n---|---|---\n   | o |   \n---|---|---\n   | x |   \n"
              (with-out-str (print-board)))))
+

@@ -15,7 +15,11 @@
 
   (it "rejects invalid input until a valid input is entered"
     (with-out-str (with-in-str (make-input '("bad input" "0"))
-      (should= 0 (prompt-player "x")))))
+      (should= 0 (prompt-player board/x-mark)))))
+
+  (it "gets user move as an Integer"
+    (with-out-str (with-in-str "1"
+      (should= 1 (prompt-player board/x-mark)))))
 
   (it "prints an empty board"
     (should= "   |   |   \n---|---|---\n   |   |   \n---|---|---\n   |   |   \n"

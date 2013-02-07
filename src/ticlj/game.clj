@@ -6,10 +6,13 @@
                            #{0 3 6} #{1 4 7} #{2 5 8}
                            #{0 4 8} #{2 4 6}])
 
+(defn is-winner? [mark]
+  (some #(= (set (filter % (board/get-moves mark))) %) winning-combinations))
+
 (defn winner []
-  (if (some #(= (set (filter % (board/get-moves board/x-mark))) %) winning-combinations)
+  (if (is-winner? board/x-mark)
     board/x-mark
-    (if (some #(= (set (filter % (board/get-moves board/o-mark))) %) winning-combinations)
+    (if (is-winner? board/o-mark)
       board/o-mark
       nil)))
 
@@ -32,7 +35,6 @@
         (println "Invalid move, please try again.")
         (request-move-recur mark))))
 
-
 (defn play-recur
   ([] (trampoline play-recur board/x-mark))
   ([mark]
@@ -44,7 +46,6 @@
       (do
         (request-move-recur mark)
         (play-recur (next-player mark))))))
-
 
 (defn start-game []
   (play-recur))

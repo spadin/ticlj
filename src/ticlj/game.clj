@@ -19,7 +19,7 @@
         (println "Game over, tied game."))
       (do
         (request-move-recur mark)
-        (play-recur (rules/next-player mark))))))
+        (recur (rules/next-player mark))))))
 
 (defn start-game []
   (play-recur))

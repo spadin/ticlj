@@ -3,21 +3,21 @@
 
 (def separator "---|---|---")
 
-(defn line-string [a b c]
+(defn line-string [line]
   (str " "
-       (board/mark-at-index a)
+       (board/mark-at-index (* line 3))
        " | "
-       (board/mark-at-index b)
+       (board/mark-at-index (+ (* line 3) 1))
        " | "
-       (board/mark-at-index c)
+       (board/mark-at-index (+ (* line 3) 2))
        " "))
 
 (defn print-board []
-  (println (line-string 0 1 2))
+  (println (line-string 0))
   (println separator)
-  (println (line-string 3 4 5))
+  (println (line-string 1))
   (println separator)
-  (println (line-string 6 7 8)))
+  (println (line-string 2)))
 
 (defn prompt-player-recur [mark]
   (println (str "Player " mark " what is your move?"))

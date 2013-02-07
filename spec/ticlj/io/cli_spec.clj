@@ -21,6 +21,15 @@
     (with-out-str (with-in-str "1"
       (should= 1 (prompt-player board/x-mark)))))
 
+  (it "return an empty board line string"
+    (should= "   |   |   "
+             (line-string 0)))
+
+  (it "returns a board line with one mark"
+    (board/set-mark-at-index board/x-mark 0)
+    (should= " x |   |   "
+             (line-string 0)))
+
   (it "prints an empty board"
     (should= "   |   |   \n---|---|---\n   |   |   \n---|---|---\n   |   |   \n"
              (with-out-str (print-board))))

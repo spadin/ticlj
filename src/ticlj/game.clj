@@ -3,14 +3,14 @@
             [ticlj.io.cli :as printer]
             [ticlj.model.rules :as rules]))
 
-(defn request-move-recur [mark]
+(defn request-human-move [mark]
     (try (board/set-mark-at-index mark (printer/prompt-player mark))
       (catch Exception e
         (println "Invalid move, please try again.")
-        (request-move-recur mark))))
+        (request-human-move mark))))
 
-(defn play-recur
-  ([] (play-recur board/x-mark))
+(defn play
+  ([] (play board/x-mark))
   ([mark]
     (printer/print-board)
     (if (rules/gameover?)
@@ -18,11 +18,11 @@
         (println (str "Game over, " (rules/winner) " has won"))
         (println "Game over, tied game."))
       (do
-        (request-move-recur mark)
+        (request-human-move mark)
         (recur (rules/next-player mark))))))
 
 (defn start-game []
-  (play-recur))
+  (play))
 
 (defn -main [& args]
   (start-game))

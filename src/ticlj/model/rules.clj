@@ -5,23 +5,23 @@
                            #{0 3 6} #{1 4 7} #{2 5 8}
                            #{0 4 8} #{2 4 6}])
 
-(defn is-winner? [mark]
-  (some #(= (set (filter % (board/get-moves mark))) %) winning-combinations))
+(defn is-winner? [mark board]
+  (some #(= (set (filter % (board/get-moves mark board))) %) winning-combinations))
 
-(defn winner []
-  (if (is-winner? board/x-mark)
+(defn winner [board]
+  (if (is-winner? board/x-mark board)
     board/x-mark
-    (if (is-winner? board/o-mark)
+    (if (is-winner? board/o-mark board)
       board/o-mark
       nil)))
 
-(defn winner? []
-  (not (nil? (winner))))
+(defn winner? [board]
+  (not (nil? (winner board))))
 
-(defn gameover? []
-  (if (winner?)
+(defn gameover? [board]
+  (if (winner? board)
     true
-    (if (board/full-board?)
+    (if (board/full-board? board)
       true
       false)))
 

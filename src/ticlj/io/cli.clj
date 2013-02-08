@@ -3,21 +3,21 @@
 
 (def separator "---|---|---")
 
-(defn line-string [line]
+(defn line-string [line board]
   (str " "
-       (board/mark-at-index (* line 3))
+       (board/mark-at-index (* line 3) board)
        " | "
-       (board/mark-at-index (+ (* line 3) 1))
+       (board/mark-at-index (+ (* line 3) 1) board)
        " | "
-       (board/mark-at-index (+ (* line 3) 2))
+       (board/mark-at-index (+ (* line 3) 2) board)
        " "))
 
-(defn print-board []
-  (println (line-string 0))
+(defn print-board [board]
+  (println (line-string 0 board))
   (println separator)
-  (println (line-string 1))
+  (println (line-string 1 board))
   (println separator)
-  (println (line-string 2)))
+  (println (line-string 2 board)))
 
 (defn prompt-integer [message]
   (println message)

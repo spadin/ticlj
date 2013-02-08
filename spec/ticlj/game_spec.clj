@@ -3,11 +3,9 @@
   (:require [ticlj.model.board :as board]))
 
 (describe "ticlj.game"
-  (before (board/reset-board))
-
   (it "requests a move until the move is valid"
     (should (.contains (with-out-str (with-in-str (make-input '("x" 0))
-                         (request-human-move board/x-mark)))
+                         (request-human-move board/x-mark board/empty-board)))
                        "Invalid input, please try again.")))
 
   (it "prints that the game is a tie"

@@ -2,9 +2,7 @@
   (:use [speclj.core] [ticlj.spec-helper] [ticlj.io.cli])
   (:require [ticlj.model.board :as board]))
 
-(describe "ticlj.printer.cli"
-  (before (board/reset-board))
-
+(describe "ticlj.io.cli"
   (it "prompts player x for a move"
     (should= "Player x what is your move?\n"
              (with-out-str (with-in-str "0" (prompt-player board/x-mark)))))
@@ -22,24 +20,28 @@
       (should= 1 (prompt-integer "enter an interger")))))
 
   (it "return an empty board line string"
-    (should= "   |   |   "
-             (line-string 0)))
+    (let [board board/empty-board]
+      (should= "   |   |   "
+               (line-string 0 board))))
 
   (it "returns a board line with one mark"
-    (board/set-mark-at-index board/x-mark 0)
-    (should= " x |   |   "
-             (line-string 0)))
+    (let [board [board/x-mark board/nomark board/nomark
+                 board/nomark board/nomark board/nomark
+                 board/nomark board/nomark board/nomark]]
+      (should= " x |   |   "
+               (line-string 0 board))))
 
   (it "prints an empty board"
-    (should= "   |   |   \n---|---|---\n   |   |   \n---|---|---\n   |   |   \n"
-             (with-out-str (print-board))))
+    (let [board board/empty-board]
+      (should= "   |   |   \n---|---|---\n   |   |   \n---|---|---\n   |   |   \n"
+               (with-out-str (print-board board)))))
 
   (it "prints a board with some moves"
-    (board/set-mark-at-index board/x-mark 0)
-    (board/set-mark-at-index board/o-mark 4)
-    (board/set-mark-at-index board/x-mark 7)
-    (should= " x |   |   \n---|---|---\n   | o |   \n---|---|---\n   | x |   \n"
-             (with-out-str (print-board))))
+    (let [board [board/x-mark board/nomark board/nomark
+                 board/nomark board/o-mark board/nomark
+                 board/nomark board/x-mark board/nomark]]
+      (should= " x |   |   \n---|---|---\n   | o |   \n---|---|---\n   | x |   \n"
+               (with-out-str (print-board board)))))
 
   (it "prompts the user to select a game type"
     (should= "Please select a game.\n1. HvH\n2. HvAI\n3. AIvH\n"

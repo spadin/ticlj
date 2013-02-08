@@ -2,58 +2,56 @@
   (:use [speclj.core] [ticlj.model.board]))
 
 (describe "ticlj.model.board"
-  (before (reset-board))
-
   (it "returns blank space when board index is not occupied"
     (should= " "
-             (mark-at-index 0)))
+             (mark-at-index 0 empty-board)))
 
   (it "returns x when player x has selected that index"
-    (set-mark-at-index x-mark 0)
-    (should= x-mark
-             (mark-at-index 0)))
+    (let [board [x-mark nomark nomark
+                 nomark nomark nomark
+                 nomark nomark nomark]]
+      (should= x-mark
+               (mark-at-index 0 board))))
 
   (it "return o when player o has selected that index"
-    (set-mark-at-index o-mark 0)
-    (should= o-mark
-             (mark-at-index 0)))
+    (let [board [o-mark nomark nomark
+                 nomark nomark nomark
+                 nomark nomark nomark]]
+      (should= o-mark
+               (mark-at-index 0 board))))
 
   (it "throws an error when mark is not recognized"
-    (should-throw Exception (set-mark-at-index "y" 0)))
+    (should-throw Exception (set-mark-at-index "y" 0 empty-board)))
 
   (it "throws an error when index is not in proper range"
-    (should-throw Exception (set-mark-at-index x-mark 9)))
+    (should-throw Exception (set-mark-at-index x-mark 9 empty-board)))
 
   (it "throws an error if you try to pick a spot that's taken"
-    (set-mark-at-index x-mark 0)
-    (should-throw Exception (set-mark-at-index o-mark 0)))
+    (let [board [x-mark nomark nomark
+                 nomark nomark nomark
+                 nomark nomark nomark]]
+      (should-throw Exception (set-mark-at-index o-mark 0 board))))
 
   (it "returns the indices of x-mark's moves"
-    (set-mark-at-index x-mark 0)
-    (set-mark-at-index x-mark 1)
-    (set-mark-at-index x-mark 2)
-    (should= #{0 1 2}
-             (get-moves x-mark)))
+    (let [board [x-mark x-mark x-mark
+                 nomark nomark nomark
+                 nomark nomark nomark]]
+      (should= #{0 1 2}
+               (get-moves x-mark board))))
 
-  (it "returns the indices of x-mark's moves"
-    (set-mark-at-index o-mark 4)
-    (set-mark-at-index o-mark 5)
-    (set-mark-at-index o-mark 6)
-    (should= #{4 5 6}
-             (get-moves o-mark)))
+  (it "returns the indices of o-mark's moves"
+    (let [board [nomark nomark nomark
+                 nomark o-mark o-mark
+                 o-mark nomark nomark]]
+      (should= #{4 5 6}
+               (get-moves o-mark board))))
 
   (it "knows when the board is not full"
-    (should= false (full-board?)))
+    (should= false (full-board? empty-board)))
 
   (it "knows when the board is full"
-    (set-mark-at-index x-mark 0)
-    (set-mark-at-index o-mark 3)
-    (set-mark-at-index x-mark 1)
-    (set-mark-at-index o-mark 4)
-    (set-mark-at-index x-mark 2)
-    (set-mark-at-index o-mark 5)
-    (set-mark-at-index x-mark 7)
-    (set-mark-at-index o-mark 8)
-    (set-mark-at-index x-mark 6)
-    (should= true (full-board?))))
+    (let [board [x-mark x-mark x-mark
+                 o-mark o-mark o-mark
+                 x-mark x-mark o-mark]]
+      (should= true (full-board? board)))))
 

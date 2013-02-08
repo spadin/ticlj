@@ -2,35 +2,22 @@
   (:use [speclj.core] [ticlj.model.rules])
   (:require [ticlj.model.board :as board]))
 
-(defn play-tied-game []
-  (board/set-mark-at-index board/x-mark 0)
-  (board/set-mark-at-index board/o-mark 1)
-  (board/set-mark-at-index board/x-mark 2)
-  (board/set-mark-at-index board/o-mark 5)
-  (board/set-mark-at-index board/x-mark 3)
-  (board/set-mark-at-index board/o-mark 6)
-  (board/set-mark-at-index board/x-mark 4)
-  (board/set-mark-at-index board/o-mark 8)
-  (board/set-mark-at-index board/x-mark 7))
+(def tied-game-board
+  [board/x-mark board/o-mark board/x-mark
+   board/x-mark board/x-mark board/o-mark
+   board/o-mark board/x-mark board/o-mark])
 
-(defn play-x-winning-game []
-  (board/set-mark-at-index board/x-mark 0)
-  (board/set-mark-at-index board/o-mark 3)
-  (board/set-mark-at-index board/x-mark 1)
-  (board/set-mark-at-index board/o-mark 4)
-  (board/set-mark-at-index board/x-mark 2))
+(def x-winning-game-board
+  [board/x-mark board/x-mark board/x-mark
+   board/o-mark board/o-mark board/nomark
+   board/nomark board/nomark board/nomark])
 
-(defn play-o-winning-game []
-  (board/set-mark-at-index board/x-mark 0)
-  (board/set-mark-at-index board/o-mark 3)
-  (board/set-mark-at-index board/x-mark 1)
-  (board/set-mark-at-index board/o-mark 4)
-  (board/set-mark-at-index board/x-mark 7)
-  (board/set-mark-at-index board/o-mark 5))
+(def o-winning-game-board
+  [board/x-mark board/x-mark board/nomark
+   board/o-mark board/o-mark board/o-mark
+   board/nomark board/x-mark board/nomark])
 
 (describe "ticlj.model.rules"
-  (before (board/reset-board))
-
   (it "determines the next player"
     (should= board/o-mark
              (next-player board/x-mark))
@@ -38,33 +25,28 @@
              (next-player board/o-mark)))
 
   (it "determines that x is the winner"
-    (play-x-winning-game)
     (should= board/x-mark
-             (winner)))
+             (winner x-winning-game-board)))
 
   (it "determines that o is the winner"
-    (play-o-winning-game)
     (should= board/o-mark
-             (winner)))
+             (winner o-winning-game-board)))
 
   (it "determines that there is a winner"
-    (play-x-winning-game)
-    (should (winner?)))
+    (should (winner? x-winning-game-board)))
 
   (it "determines that there is no winner"
     (should= false
-             (winner?)))
+             (winner? board/empty-board)))
 
   (it "should know that the game has not ended"
     (should= false
-             (gameover?)))
+             (gameover? board/empty-board)))
 
   (it "should know the game is over when there is a winner"
-    (play-x-winning-game)
     (should= true
-             (gameover?)))
+             (gameover? x-winning-game-board)))
 
   (it "should know the game is over when the board is full"
-    (play-tied-game)
     (should= true
-             (gameover?))))
+             (gameover? tied-game-board))))

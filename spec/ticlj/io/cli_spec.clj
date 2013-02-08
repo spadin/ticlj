@@ -43,6 +43,6 @@
       (should= " x |   |   \n---|---|---\n   | o |   \n---|---|---\n   | x |   \n"
                (with-out-str (print-board board)))))
 
-  (it "prompts the user to select a game type"
-    (should= "Please select a game.\n1. HvH\n2. HvAI\n3. AIvH\n"
-             (with-out-str (with-in-str "1" (prompt-game-type))))))
+  (it "prompts player 1 to choose type of player."
+    (should= "Player 1 what type of player are you?\n1. Human\n2. AI\n"
+             (with-out-str (with-in-str "1" (prompt-player-type 1))))))

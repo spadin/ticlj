@@ -29,5 +29,8 @@
 (defn prompt-player [mark]
   (prompt-integer (str "Player " mark " what is your move?")))
 
+(defn prompt-player-type [player-number]
+  (prompt-integer (str "Player " player-number " what type of player are you?\n1. Human\n2. AI")))
+
 (defn prompt-game-type []
   (println "Please select a game.\n1. HvH\n2. HvAI\n3. AIvH"))

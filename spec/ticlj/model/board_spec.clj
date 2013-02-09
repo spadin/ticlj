@@ -21,16 +21,31 @@
                (mark-at-index 0 board))))
 
   (it "throws an error when mark is not recognized"
-    (should-throw Exception (set-mark-at-index "y" 0 empty-board)))
+    (should-throw Exception (validate-mark-at-index "y" 0 empty-board)))
 
   (it "throws an error when index is not in proper range"
-    (should-throw Exception (set-mark-at-index x-mark 9 empty-board)))
+    (should-throw Exception (validate-mark-at-index x-mark 9 empty-board)))
 
   (it "throws an error if you try to pick a spot that's taken"
     (let [board [x-mark nomark nomark
                  nomark nomark nomark
                  nomark nomark nomark]]
-      (should-throw Exception (set-mark-at-index o-mark 0 board))))
+      (should-throw Exception (validate-mark-at-index o-mark 0 board))))
+
+  (it "returns the index of the move"
+    (let [board [nomark nomark nomark
+                 nomark nomark nomark
+                 nomark nomark nomark]]
+      (should= 0 (validate-mark-at-index x-mark 0 board))))
+
+  (it "returns a board with the new mark in it"
+    (let [board [nomark nomark nomark
+                 nomark nomark nomark
+                 nomark nomark nomark]
+          new-board [x-mark nomark nomark
+                     nomark nomark nomark
+                     nomark nomark nomark]]
+      (should= new-board (set-mark-at-index x-mark 0 board))))
 
   (it "returns the indices of x-mark's moves"
     (let [board [x-mark x-mark x-mark

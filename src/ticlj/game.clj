@@ -1,13 +1,9 @@
 (ns ticlj.game
+  (:use [ticlj.model.player])
   (:require [ticlj.model.board :as board]
             [ticlj.io.cli :as printer]
-            [ticlj.model.rules :as rules]))
-
-(defn request-human-move [mark board]
-    (try (board/set-mark-at-index mark (printer/prompt-player mark) board)
-      (catch Exception e
-        (println (str "Invalid move, please try again." e))
-        (request-human-move mark board))))
+            [ticlj.model.rules :as rules])
+  (:import [ticlj.model.player Human]))
 
 (defn play
   ([] (play board/x-mark board/empty-board))
@@ -17,8 +13,7 @@
       (if (rules/winner? board)
         (println (str "Game over, " (rules/winner board) " has won"))
         (println "Game over, tied game."))
-      (do
-        (recur (rules/next-player mark) (request-human-move mark board))))))
+        (recur (rules/next-player mark) (board/set-mark-at-index mark (move (Human. mark) board) board)))))
 
 (defn start-game []
   (play))

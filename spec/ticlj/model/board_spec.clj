@@ -3,7 +3,7 @@
 
 (describe "ticlj.model.board"
   (it "returns blank space when board index is not occupied"
-    (should= " "
+    (should= nomark
              (mark-at-index 0 empty-board)))
 
   (it "returns x when player x has selected that index"

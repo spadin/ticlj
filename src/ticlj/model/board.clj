@@ -16,10 +16,10 @@
   (and (>= index 0) (<= index 8)))
 
 (defn empty-index? [index board]
-  (= " " (nth board index)))
+  (= nomark (nth board index)))
 
 (defn full-board? [board]
-  (nil? (some #(= " " %) board)))
+  (nil? (some #(= nomark %) board)))
 
 (defn validate-mark-at-index [mark index board]
   (if (allowed-index? index)

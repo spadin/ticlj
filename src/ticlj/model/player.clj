@@ -14,7 +14,7 @@
         (println (str "Invalid move, please try again." e))
         (move this board)))))
 
-(defrecord AI [mark]
+(defrecord UnbeatableAI [mark]
   Player
   (move [this board]
     0))

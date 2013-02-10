@@ -1,8 +1,8 @@
 (ns ticlj.game
-  (:use [ticlj.model.player])
   (:require [ticlj.model.board :as board]
             [ticlj.io.cli :as printer]
-            [ticlj.model.rules :as rules])
+            [ticlj.model.rules :as rules]
+            [ticlj.model.player :as player])
   (:import [ticlj.model.player Human]))
 
 (defn play
@@ -13,7 +13,7 @@
       (if (rules/winner? board)
         (println (str "Game over, " (rules/winner board) " has won"))
         (println "Game over, tied game."))
-        (recur (rules/next-player mark) (board/set-mark-at-index mark (move (Human. mark) board) board)))))
+        (recur (rules/next-player mark) (board/set-mark-at-index mark (player/move (Human. mark) board) board)))))
 
 (defn start-game []
   (play))

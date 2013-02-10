@@ -1,12 +1,13 @@
 (ns ticlj.model.player-spec
   (:use [speclj.core] [ticlj.spec-helper] [ticlj.model.player])
-  (:import [ticlj.model.player Human])
+  (:import [ticlj.model.player Human AI])
   (:require [ticlj.model.board :as board]))
 
 (describe "ticlj.model.player"
-  ;(context "AI"
-    ;(it "choose index 0 as the first move"
-      ;(should= 0
+  (context "AI"
+    (it "choose index 0 as the first move"
+      (should= 0
+               (move (AI. board/x-mark) board/empty-board))))
   (context "Human"
     (it "returns an index as the move"
       (with-out-str

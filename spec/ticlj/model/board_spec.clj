@@ -61,6 +61,13 @@
       (should= #{4 5 6}
                (get-moves o-mark board))))
 
+  (it "returns a set of the empty indices"
+    (let [board [x-mark nomark nomark
+                 nomark nomark nomark
+                 nomark nomark nomark]]
+      (should= #{1 2 3 4 5 6 7 8}
+               (get-empty-indices board))))
+
   (it "knows when the board is not full"
     (should= false (full-board? empty-board)))
 

@@ -1,21 +1,6 @@
 (ns ticlj.model.rules-spec
-  (:use [speclj.core] [ticlj.model.rules])
+  (:use [speclj.core] [ticlj.spec-helper] [ticlj.model.rules])
   (:require [ticlj.model.board :as board]))
-
-(def tied-game-board
-  [board/x-mark board/o-mark board/x-mark
-   board/x-mark board/x-mark board/o-mark
-   board/o-mark board/x-mark board/o-mark])
-
-(def x-winning-game-board
-  [board/x-mark board/x-mark board/x-mark
-   board/o-mark board/o-mark board/nomark
-   board/nomark board/nomark board/nomark])
-
-(def o-winning-game-board
-  [board/x-mark board/x-mark board/nomark
-   board/o-mark board/o-mark board/o-mark
-   board/nomark board/x-mark board/nomark])
 
 (describe "ticlj.model.rules"
   (it "determines the next player"

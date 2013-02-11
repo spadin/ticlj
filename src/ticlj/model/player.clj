@@ -1,10 +1,10 @@
 (ns ticlj.model.player
   (:require [ticlj.io.cli :as printer]
+            [ticlj.model.rules :as rules]
             [ticlj.model.board :as board]))
 
 (defprotocol Player
-  (move [this board])
-  (mark [this]))
+  (move [this board]))
 
 (defrecord Human [mark]
   Player
@@ -18,3 +18,10 @@
   Player
   (move [this board]
     0))
+
+(defn calculate-score [mark board]
+  (if (= (rules/winner board) mark)
+    1
+    (if (= (rules/winner board) (rules/next-player mark))
+      -1
+      0)))

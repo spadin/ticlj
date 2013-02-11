@@ -5,6 +5,18 @@
 
 (describe "ticlj.model.player"
   (context "AI"
+    (it "returns a score of 1 for winning"
+      (should= 1
+               (calculate-score board/x-mark x-winning-game-board)))
+
+    (it "returns a score of 0 for tied game"
+      (should= 0
+               (calculate-score board/x-mark tied-game-board)))
+
+    (it "returns a score of -1 for losing game"
+      (should= -1
+               (calculate-score board/x-mark o-winning-game-board)))
+
     (it "choose index 0 as the first move"
       (should= 0
                (move (UnbeatableAI. board/x-mark) board/empty-board))))

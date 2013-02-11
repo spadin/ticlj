@@ -43,4 +43,4 @@
   (set (remove nil? (map-indexed (fn [idx val] (if (= val mark) idx nil)) board))))
 
 (defn get-empty-indices [board]
-  (get-moves nomark board))
+  (vec (get-moves nomark board)))

@@ -17,9 +17,38 @@
       (should= -1
                (calculate-score board/x-mark o-winning-game-board)))
 
-    (it "choose index 0 as the first move"
-      (should= 0
-               (move (UnbeatableAI. board/x-mark) board/empty-board))))
+    (it "returns max move attributes for a tie game"
+      (let [board [board/x-mark board/x-mark board/o-mark
+                   board/o-mark board/o-mark board/x-mark
+                   board/x-mark board/nomark board/o-mark]]
+        (should= {:score 0 :position 7}
+                 (max-move board/x-mark board))))
+
+    (it "returns max move x can make for the win"
+      (let [board [board/x-mark board/nomark board/x-mark
+                   board/nomark board/nomark board/o-mark
+                   board/nomark board/o-mark board/nomark]]
+        (should= {:score 1 :position 1}
+                 (max-move board/x-mark board))))
+
+    (it "returns max move o can make"
+      (let [board [board/x-mark board/o-mark board/nomark
+                   board/nomark board/o-mark board/nomark
+                   board/nomark board/x-mark board/x-mark]]
+        (should= {:score 1 :position 6}
+                 (max-move board/o-mark board))))
+
+    (it "returns an index for a move"
+      (let [board [board/x-mark board/x-mark board/o-mark
+                   board/o-mark board/o-mark board/x-mark
+                   board/x-mark board/nomark board/o-mark]]
+        (should= 7
+                 (move (UnbeatableAI. board/x-mark) board)))))
+
+    ;(it "have an opening move"
+      ;(should= 7
+               ;(move (UnbeatableAI. board/x-mark) board/empty-board))))
+
   (context "Human"
     (it "returns an index as the move"
       (with-out-str

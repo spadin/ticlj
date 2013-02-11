@@ -14,10 +14,12 @@
         (println (str "Invalid move, please try again." e))
         (move this board)))))
 
+(declare max-move)
+(declare min-move)
 (defrecord UnbeatableAI [mark]
   Player
   (move [this board]
-    0))
+    (:position (max-move (:mark this) board))))
 
 (defn calculate-score [mark board]
   (if (= (rules/winner board) mark)
@@ -25,3 +27,25 @@
     (if (= (rules/winner board) (rules/next-player mark))
       -1
       0)))
+
+(defn min-move [mark board]
+  (let [moves
+        (for [position (board/get-empty-indices board)
+              :let [new-board (board/set-mark-at-index mark position board)]]
+          (if (rules/gameover? new-board)
+            {:score (calculate-score mark new-board)
+             :position position}
+            (max-move (rules/next-player mark) new-board)))]
+    (do
+      (reduce min-key :score (reverse moves)))))
+
+(defn max-move [mark board]
+  (let [moves
+        (for [position (board/get-empty-indices board)
+              :let [new-board (board/set-mark-at-index mark position board)]]
+          (if (rules/gameover? new-board)
+            {:score (calculate-score mark new-board)
+             :position position}
+            (min-move (rules/next-player mark) new-board)))]
+    (do
+      (reduce max-key :score (reverse moves)))))

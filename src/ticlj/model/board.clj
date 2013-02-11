@@ -32,9 +32,9 @@
 
 (defn set-mark-at-index [mark index board]
   (if (validate-mark-at-index mark index board)
-    (concat (take index board)
+    (vec (concat (take index board)
             [mark]
-            (rest (drop index board)))))
+            (rest (drop index board))))))
 
 (defn mark-at-index [index board]
   (nth board index))

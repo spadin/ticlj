@@ -1,8 +1,10 @@
 (ns ticlj.game-spec
   (:use [speclj.core] [ticlj.spec-helper] [ticlj.game])
   (:require [ticlj.model.board :as board]
-            [ticlj.model.player :as player])
-  (:import [ticlj.model.player Human UnbeatableAI]))
+            [ticlj.model.player :as player]
+            [ticlj.model.player.human :as human])
+  (:import [ticlj.model.player UnbeatableAI]
+           [ticlj.model.player.human Human))
 
 (describe "ticlj.game"
   (it "prints that the game is a tie"

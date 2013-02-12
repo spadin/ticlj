@@ -2,8 +2,11 @@
   (:require [ticlj.model.board :as board]
             [ticlj.io.cli :as printer]
             [ticlj.model.rules :as rules]
-            [ticlj.model.player :as player])
-  (:import [ticlj.model.player Human UnbeatableAI]))
+            [ticlj.model.player :as player]
+            [ticlj.model.player.human :as human]
+            [ticlj.model.player.unbeatable :as unbeatable])
+  (:import [ticlj.model.player.human Human]
+           [ticlj.model.player.unbeatable UnbeatableAI]))
 
 (defn build-player [player-1 player-2 mark]
   (if (= mark board/x-mark)

@@ -1,10 +1,13 @@
 (ns ticlj.game-spec
-  (:use [speclj.core] [ticlj.spec-helper] [ticlj.game])
+  (:use [speclj.core]
+        [ticlj.spec-helper]
+        [ticlj.game])
   (:require [ticlj.model.board :as board]
             [ticlj.model.player :as player]
-            [ticlj.model.player.human :as human])
-  (:import [ticlj.model.player UnbeatableAI]
-           [ticlj.model.player.human Human))
+            [ticlj.model.player.human :as human]
+            [ticlj.model.player.unbeatable :as unbeatable])
+  (:import [ticlj.model.player.unbeatable UnbeatableAI]
+           [ticlj.model.player.human Human]))
 
 (describe "ticlj.game"
   (it "prints that the game is a tie"
@@ -26,7 +29,7 @@
     (should= true
              (instance? Human (build-player 1 1 board/x-mark))))
 
-  (it "should build an UnbeatableAI player"
+  (it "should build an unbeatableai player"
     (should= true
              (instance? UnbeatableAI (build-player 2 1 board/x-mark))))
 

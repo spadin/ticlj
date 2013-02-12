@@ -34,9 +34,9 @@
     (it "returns max move o can make"
       (let [board [board/x-mark board/o-mark board/nomark
                    board/nomark board/o-mark board/nomark
-                   board/nomark board/x-mark board/x-mark]]
-        (should= {:score 1 :position 6}
-                 (max-move board/o-mark board))))
+                   board/o-mark board/x-mark board/x-mark]]
+        (should= {:score 0 :position 2}
+                 (max-move board/x-mark board))))
 
     (it "returns an index for a move"
       (let [board [board/x-mark board/x-mark board/o-mark

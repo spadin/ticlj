@@ -33,11 +33,11 @@
         (for [position (board/get-empty-indices board)
               :let [new-board (board/set-mark-at-index mark position board)]]
           (if (rules/gameover? new-board)
-            {:score (calculate-score mark new-board)
+            {:score (calculate-score (rules/next-player mark) new-board)
              :position position}
-            (max-move (rules/next-player mark) new-board)))]
-    (do
-      (reduce min-key :score (reverse moves)))))
+            {:score (:score (max-move (rules/next-player mark) new-board))
+             :position position}))]
+    (reduce (fn [memo val]  (if (< (:score val) (:score memo)) val memo)) moves)))
 
 (defn max-move [mark board]
   (let [moves
@@ -46,6 +46,6 @@
           (if (rules/gameover? new-board)
             {:score (calculate-score mark new-board)
              :position position}
-            (min-move (rules/next-player mark) new-board)))]
-    (do
-      (reduce max-key :score (reverse moves)))))
+            {:score (:score (min-move (rules/next-player mark) new-board))
+             :position position}))]
+    (reduce (fn [memo val]  (if (> (:score val) (:score memo)) val memo)) moves)))

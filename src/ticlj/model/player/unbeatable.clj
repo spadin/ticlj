@@ -18,9 +18,6 @@
       -1
       0)))
 
-(defn alpha-beta [mark board alpha beta]
-  7)
-
 (defn min-move [mark board depth]
   (let [moves
         (for [position (board/get-empty-indices board)

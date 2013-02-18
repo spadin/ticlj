@@ -46,9 +46,7 @@
       {:score (calculate-score max-mark board depth)}
       (loop [empty-indices (board/get-empty-indices board)
              best-move nil
-             alpha alpha
-             beta beta
-             cut-off? false]
+             alpha alpha beta beta]
         (let [index (first empty-indices)
               next-mark (rules/next-player current-mark)
               new-board (board/set-mark-at-index current-mark
@@ -56,26 +54,21 @@
                                                  board)
               other-indices (rest empty-indices)
               move (min-value max-mark next-mark new-board alpha beta (inc depth))
-              next-best-move (determine-best-move best-move move index true)
-              next-alpha (max alpha (:score next-best-move))
-              next-beta beta
-              next-cut-off? (> next-alpha next-beta)]
-              (if-not (and (not cut-off?) (empty? other-indices))
+              best-move (determine-best-move best-move move index true)
+              alpha (max alpha (:score best-move))
+              cut-off? (> alpha beta)]
+              (if (and (not cut-off?) (not (empty? other-indices)))
                       (recur other-indices
-                             next-best-move
-                             next-alpha
-                             next-beta
-                             cut-off?)
-                             next-best-move)))))
+                             best-move
+                             alpha beta)
+                      (merge best-move {:alpha alpha}))))))
 
 (defn min-value [max-mark current-mark board alpha beta depth]
   (if (rules/gameover? board)
       {:score (calculate-score max-mark board depth)}
       (loop [empty-indices (board/get-empty-indices board)
              best-move nil
-             alpha alpha
-             beta beta
-             cut-off? false]
+             alpha alpha beta beta]
         (let [index (first empty-indices)
               next-mark (rules/next-player current-mark)
               new-board (board/set-mark-at-index current-mark
@@ -83,14 +76,11 @@
                                                  board)
               other-indices (rest empty-indices)
               move (max-value max-mark next-mark new-board alpha beta (inc depth))
-              next-best-move (determine-best-move best-move move index false)
-              next-alpha alpha
-              next-beta (min beta (:score next-best-move))
-              next-cut-off? (> next-alpha next-beta)]
-              (if-not (and (not cut-off?) (empty? other-indices))
+              best-move (determine-best-move best-move move index false)
+              beta (min beta (:score best-move))
+              cut-off? (> alpha beta)]
+              (if (and (not cut-off?) (not (empty? other-indices)))
                       (recur other-indices
-                             next-best-move
-                             next-alpha
-                             next-beta
-                             cut-off?)
-                             next-best-move)))))
+                             best-move
+                             alpha beta)
+                      (merge best-move {:beta beta}))))))

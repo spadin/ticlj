@@ -4,18 +4,24 @@
             [ticlj.model.rules :as rules]
             [ticlj.model.player :as player]
             [ticlj.model.player.human :as human]
+            [ticlj.model.player.easy :as easy]
             [ticlj.model.player.unbeatable :as unbeatable])
   (:import [ticlj.model.player.human Human]
+           [ticlj.model.player.easy EasyAI]
            [ticlj.model.player.unbeatable UnbeatableAI]))
 
 (defn build-player [player-1 player-2 mark]
   (if (= mark board/x-mark)
     (if (= player-1 1)
       (Human. mark)
-      (UnbeatableAI. mark))
+      (if (= player-1 2)
+        (UnbeatableAI. mark)
+        (EasyAI. mark)))
     (if (= player-2 1)
       (Human. mark)
-      (UnbeatableAI. mark))))
+      (if (= player-2 2)
+        (UnbeatableAI. mark)
+        (EasyAI. mark)))))
 
 
 (defn play

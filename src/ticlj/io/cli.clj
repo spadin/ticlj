@@ -30,4 +30,4 @@
   (prompt-integer (str "Player " mark " what is your move?")))
 
 (defn prompt-player-type [player-number]
-  (prompt-integer (str "What type of player is player " player-number "?\n1. Human\n2. AI")))
+  (prompt-integer (str "What type of player is player " player-number "?\n1. Human\n2. Unbeatable AI\n3. Easy AI")))

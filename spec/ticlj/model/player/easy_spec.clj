@@ -18,4 +18,12 @@
                  board/nomark board/nomark board/nomark]
           actual (make-move board/o-mark board)]
       (should= 1
-               actual))))
+               actual)))
+
+  (it "makes the first available move via the player/move function"
+    (let [board [board/x-mark board/nomark board/nomark
+                 board/nomark board/nomark board/nomark
+                 board/nomark board/nomark board/nomark]
+          actual (player/move (EasyAI. board/o-mark) board)]
+    (should= 1
+             actual))))

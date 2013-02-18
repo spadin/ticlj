@@ -44,5 +44,5 @@
                (with-out-str (print-board board)))))
 
   (it "prompts player 1 to choose type of player."
-    (should= "What type of player is player 1?\n1. Human\n2. AI\n"
+    (should= "What type of player is player 1?\n1. Human\n2. Unbeatable AI\n3. Easy AI\n"
              (with-out-str (with-in-str "1" (prompt-player-type 1))))))

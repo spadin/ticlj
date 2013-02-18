@@ -4,10 +4,11 @@
             [ticlj.model.player :as player])
   (:import [ticlj.model.player Player]))
 
+(declare make-move)
 (defrecord EasyAI [mark]
   Player
   (move [this board]
-    0))
+    (make-move (:mark this) board)))
 
 (defn make-move [mark board]
   (first (board/get-empty-indices board)))

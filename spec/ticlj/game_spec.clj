@@ -27,15 +27,15 @@
                          (play 1 1)))
                        "o has won")))
 
-  (it "should build a human player"
+  (it "builds a human player"
     (should= true
              (instance? Human (build-player 1 1 board/x-mark))))
 
-  (it "should build an unbeatableai player"
+  (it "builds an unbeatableai player"
     (should= true
              (instance? UnbeatableAI (build-player 2 1 board/x-mark))))
 
-  (it "should build an easyai player"
+  (it "builds an easyai player"
     (should= true
              (instance? EasyAI (build-player 3 1 board/x-mark))))
 

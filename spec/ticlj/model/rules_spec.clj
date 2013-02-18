@@ -24,14 +24,14 @@
     (should= false
              (winner? board/empty-board)))
 
-  (it "should know that the game has not ended"
+  (it "knows that the game has not ended"
     (should= false
              (gameover? board/empty-board)))
 
-  (it "should know the game is over when there is a winner"
+  (it "knows the game is over when there is a winner"
     (should= true
              (gameover? x-winning-game-board)))
 
-  (it "should know the game is over when the board is full"
+  (it "knows the game is over when the board is full"
     (should= true
              (gameover? tied-game-board))))

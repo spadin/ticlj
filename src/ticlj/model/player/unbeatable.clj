@@ -13,8 +13,6 @@
   (move [this board]
     (alpha-beta (:mark this) board)))
 
-(defmacro dbg[x] `(let [x# ~x] (println "dbg:" '~x "=" x#) x#))
-
 (defn max-mark-winner? [max-mark board]
   (= (rules/winner board) max-mark))
 

@@ -6,9 +6,11 @@
             [ticlj.model.player :as player]
             [ticlj.model.player.human :as human]
             [ticlj.model.player.easy :as easy]
+            [ticlj.model.player.medium :as medium]
             [ticlj.model.player.unbeatable :as unbeatable])
   (:import [ticlj.model.player.unbeatable UnbeatableAI]
            [ticlj.model.player.easy EasyAI]
+           [ticlj.model.player.medium MediumAI]
            [ticlj.model.player.human Human]))
 
 (describe "ticlj.game"
@@ -31,13 +33,17 @@
     (should= true
              (instance? Human (build-player 1 1 board/x-mark))))
 
-  (it "builds an unbeatableai player"
+  (it "builds an UnbeatableAI player"
     (should= true
              (instance? UnbeatableAI (build-player 2 1 board/x-mark))))
 
-  (it "builds an easyai player"
+  (it "builds an EasyAI player"
     (should= true
              (instance? EasyAI (build-player 3 1 board/x-mark))))
+
+  (it "builds a MediumAI player"
+    (should= true
+             (instance? MediumAI (build-player 4 1 board/x-mark))))
 
   (it "calls play with players when game is started"
     (with-out-str (with-in-str (make-input '(1 1))

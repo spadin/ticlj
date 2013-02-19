@@ -3,13 +3,17 @@
 
 (def separator "---|---|---")
 
+(defn index-string [board index]
+  (let [mark (board/mark-at-index index board)]
+    (if (= mark " ") index mark)))
+
 (defn line-string [line board]
   (str " "
-       (board/mark-at-index (* line 3) board)
+       (-> board (index-string (* line 3)))
        " | "
-       (board/mark-at-index (+ (* line 3) 1) board)
+       (-> board (index-string (+ (* line 3) 1)))
        " | "
-       (board/mark-at-index (+ (* line 3) 2) board)
+       (-> board (index-string (+ (* line 3) 2)))
        " "))
 
 (defn print-board [board]
@@ -27,7 +31,7 @@
       (prompt-integer message))))
 
 (defn prompt-player [mark]
-  (prompt-integer (str "Player " mark " what is your move?")))
+  (prompt-integer (str "Player " mark " choose the index of an empty spot for your next move")))
 
 (defn prompt-player-type [player-number]
   (prompt-integer (str "What type of player is player " player-number "?\n1. Human\n2. Unbeatable AI\n3. Easy AI\n4. Medium AI")))

@@ -4,11 +4,11 @@
 
 (describe "ticlj.io.cli"
   (it "prompts player x for a move"
-    (should= "Player x what is your move?\n"
+    (should= "Player x choose the index of an empty spot for your next move\n"
              (with-out-str (with-in-str "0" (prompt-player board/x-mark)))))
 
   (it "prompts player o for a move"
-    (should= "Player o what is your move?\n"
+    (should= "Player o choose the index of an empty spot for your next move\n"
              (with-out-str (with-in-str "0" (prompt-player board/o-mark)))))
 
   (it "rejects invalid input until a valid input is entered"
@@ -21,26 +21,26 @@
 
   (it "return an empty board line string"
     (let [board board/empty-board]
-      (should= "   |   |   "
+      (should= " 0 | 1 | 2 "
                (line-string 0 board))))
 
   (it "returns a board line with one mark"
     (let [board [board/x-mark board/nomark board/nomark
                  board/nomark board/nomark board/nomark
                  board/nomark board/nomark board/nomark]]
-      (should= " x |   |   "
+      (should= " x | 1 | 2 "
                (line-string 0 board))))
 
   (it "prints an empty board"
     (let [board board/empty-board]
-      (should= "   |   |   \n---|---|---\n   |   |   \n---|---|---\n   |   |   \n"
+      (should= " 0 | 1 | 2 \n---|---|---\n 3 | 4 | 5 \n---|---|---\n 6 | 7 | 8 \n"
                (with-out-str (print-board board)))))
 
   (it "prints a board with some moves"
     (let [board [board/x-mark board/nomark board/nomark
                  board/nomark board/o-mark board/nomark
                  board/nomark board/x-mark board/nomark]]
-      (should= " x |   |   \n---|---|---\n   | o |   \n---|---|---\n   | x |   \n"
+      (should= " x | 1 | 2 \n---|---|---\n 3 | o | 5 \n---|---|---\n 6 | x | 8 \n"
                (with-out-str (print-board board)))))
 
   (it "prompts player 1 to choose type of player."

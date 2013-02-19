@@ -35,9 +35,7 @@
   ([mark board player-1 player-2]
     (printer/print-board board)
     (if (rules/gameover? board)
-      (if (rules/winner? board)
-        (println (str "Game over, " (rules/winner board) " has won"))
-        (println "Game over, tied game."))
+      (printer/print-gameover (rules/winner board))
       (recur (rules/next-player mark)
              (board/set-mark-at-index mark (player/move (build-player player-1 player-2 mark) board) board)
               player-1 player-2))))

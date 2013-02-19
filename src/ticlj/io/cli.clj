@@ -35,3 +35,8 @@
 
 (defn prompt-player-type [player-number]
   (prompt-integer (str "What type of player is player " player-number "?\n1. Human\n2. Unbeatable AI\n3. Easy AI\n4. Medium AI")))
+
+(defn print-gameover [winner]
+  (if-not (nil? winner)
+          (println "Game over," winner "has won")
+          (println "Game over, tied game")))

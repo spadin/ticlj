@@ -45,4 +45,12 @@
 
   (it "prompts player 1 to choose type of player."
     (should= "What type of player is player 1?\n1. Human\n2. Unbeatable AI\n3. Easy AI\n4. Medium AI\n"
-             (with-out-str (with-in-str "1" (prompt-player-type 1))))))
+             (with-out-str (with-in-str "1" (prompt-player-type 1)))))
+
+  (it "prints a gameover message when that x wins"
+    (should= "Game over, x has won\n"
+             (with-out-str (print-gameover board/x-mark))))
+
+  (it "prints a tied game message when nobody wins"
+    (should= "Game over, tied game\n"
+             (with-out-str (print-gameover nil)))))

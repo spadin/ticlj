@@ -37,7 +37,7 @@
     (if (rules/gameover? board)
       (printer/print-gameover (rules/winner board))
       (recur (rules/next-player mark)
-             (board/set-mark-at-index mark (player/move (build-player player-1 player-2 mark) board) board)
+             (-> board (board/set-mark-at-index mark (player/move (build-player player-1 player-2 mark) board)))
               player-1 player-2))))
 
 (defn start-game []

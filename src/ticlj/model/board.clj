@@ -30,7 +30,7 @@
       (throw (Exception. "Invalid mark")))
     (throw (Exception. "Invalid index"))))
 
-(defn set-mark-at-index [mark index board]
+(defn set-mark-at-index [board mark index]
   (if (validate-mark-at-index mark index board)
     (vec (concat (take index board)
             [mark]

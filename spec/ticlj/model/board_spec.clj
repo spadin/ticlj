@@ -45,7 +45,7 @@
           new-board [x-mark nomark nomark
                      nomark nomark nomark
                      nomark nomark nomark]]
-      (should= new-board (set-mark-at-index x-mark 0 board))))
+      (should= new-board (set-mark-at-index board x-mark 0))))
 
   (it "returns the indices of x-mark's moves"
     (let [board [x-mark x-mark x-mark

@@ -52,9 +52,8 @@
              alpha alpha beta beta]
         (let [index (first empty-indices)
               next-mark (rules/next-player current-mark)
-              new-board (board/set-mark-at-index current-mark
-                                                 index
-                                                 board)
+              new-board (-> board (board/set-mark-at-index current-mark
+                                                 index))
               other-indices (rest empty-indices)
               move (min-value max-mark next-mark new-board alpha beta (inc depth) max-depth)
               best-move (determine-best-move best-move move index true)
@@ -74,9 +73,8 @@
              alpha alpha beta beta]
         (let [index (first empty-indices)
               next-mark (rules/next-player current-mark)
-              new-board (board/set-mark-at-index current-mark
-                                                 index
-                                                 board)
+              new-board (-> board (board/set-mark-at-index current-mark
+                                                 index))
               other-indices (rest empty-indices)
               move (max-value max-mark next-mark new-board alpha beta (inc depth) max-depth)
               best-move (determine-best-move best-move move index false)

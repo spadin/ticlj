@@ -53,4 +53,10 @@
 
   (it "prints a tied game message when nobody wins"
     (should= "Game over, tied game\n"
-             (with-out-str (print-gameover nil)))))
+             (with-out-str (print-gameover nil))))
+  
+  (it "prompts user to choose a game type"
+    (should= "Please choose a game:\n1. 3x3 Tic Tac Toe\n2. 4x4 Tic Tac Toe\n"
+             (with-out-str (with-in-str "1" (prompt-game-type)))))
+
+)

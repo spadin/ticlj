@@ -40,3 +40,6 @@
   (if-not (nil? winner)
           (println "Game over," winner "has won")
           (println "Game over, tied game")))
+
+(defn prompt-game-type []
+  (prompt-integer (str "Please choose a game:\n1. 3x3 Tic Tac Toe\n2. 4x4 Tic Tac Toe")))

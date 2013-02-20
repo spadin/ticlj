@@ -31,7 +31,7 @@
 
 
 (defn play
-  ([player-1 player-2] (play board/x-mark board/empty-board player-1 player-2))
+  ([game-type player-1 player-2] (play board/x-mark board/empty-board player-1 player-2))
   ([mark board player-1 player-2]
     (printer/print-board board)
     (if (rules/gameover? board)
@@ -41,9 +41,10 @@
               player-1 player-2))))
 
 (defn start-game []
-  (let [player-1 (printer/prompt-player-type 1)
+  (let [game-type (printer/prompt-game-type)
+        player-1 (printer/prompt-player-type 1)
         player-2 (printer/prompt-player-type 2)]
-    (play player-1 player-2)))
+    (play game-type player-1 player-2)))
 
 (defn -main [& args]
   (start-game))

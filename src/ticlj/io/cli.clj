@@ -5,7 +5,7 @@
 
 (defn index-string [board index]
   (let [mark (board/mark-at-index index board)]
-    (if (= mark " ") index mark)))
+    (if (= mark board/nomark) index mark)))
 
 (defn line-string [line board]
   (str " "

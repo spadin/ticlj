@@ -34,18 +34,18 @@
 
 (defn validate-mark-at-index [mark index board]
   (if (allowed-index? index)
-    (if (allowed-mark? mark)
-      (if (empty-index? index board)
-        index
-        (throw (Exception. "Spot taken")))
-      (throw (Exception. "Invalid mark")))
-    (throw (Exception. "Invalid index"))))
+      (if (allowed-mark? mark)
+          (if (empty-index? index board)
+               index
+              (throw (Exception. "Spot taken")))
+          (throw (Exception. "Invalid mark")))
+      (throw (Exception. "Invalid index"))))
 
 (defn set-mark-at-index [board mark index]
   (if (validate-mark-at-index mark index board)
-    (vec (concat (take index board)
-            [mark]
-            (rest (drop index board))))))
+      (vec (concat (take index board)
+                   [mark]
+                   (rest (drop index board))))))
 
 (defn mark-at-index [index board]
   (nth board index))

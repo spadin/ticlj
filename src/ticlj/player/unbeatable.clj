@@ -1,15 +1,15 @@
 (ns ticlj.player.unbeatable
   (:require [ticlj.rules.basic :as rules]
             [ticlj.board.basic :as board]
-            [ticlj.player :as player])
-  (:import [ticlj.player Player]))
+            [ticlj.player.aplayer :as player])
+  (:import [ticlj.player.aplayer APlayer]))
 
 (declare alpha-beta)
 (declare max-value)
 (declare min-value)
 
 (defrecord UnbeatableAI [mark]
-  Player
+  APlayer
   (move [this board]
     (alpha-beta (:mark this) board nil)))
 

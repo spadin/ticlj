@@ -2,11 +2,11 @@
   (:require [ticlj.printer.basic :as printer]
             [ticlj.rules.basic :as rules]
             [ticlj.board.basic :as board]
-            [ticlj.player :as player])
-  (:import [ticlj.player Player]))
+            [ticlj.player.aplayer :as player])
+  (:import [ticlj.player.aplayer APlayer]))
 
 (defrecord Human [mark]
-  Player
+  APlayer
   (move [this board]
     (try (board/validate-mark-at-index (:mark this) (printer/prompt-player (:mark this)) board)
       (catch Exception e

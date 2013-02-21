@@ -3,7 +3,7 @@
         [ticlj.spec-helper]
         [ticlj.core])
   (:require [ticlj.board.basic :as board]
-            [ticlj.player :as player]
+            [ticlj.player.aplayer :as player]
             [ticlj.player.human :as human]
             [ticlj.player.easy :as easy]
             [ticlj.player.medium :as medium]

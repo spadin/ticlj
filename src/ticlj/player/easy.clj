@@ -1,12 +1,12 @@
 (ns ticlj.player.easy
   (:require [ticlj.rules.basic :as rules]
             [ticlj.board.basic :as board]
-            [ticlj.player :as player])
-  (:import [ticlj.player Player]))
+            [ticlj.player.aplayer :as player])
+  (:import [ticlj.player.aplayer APlayer]))
 
 (declare make-move)
 (defrecord EasyAI [mark]
-  Player
+  APlayer
   (move [this board]
     (make-move (:mark this) board)))
 

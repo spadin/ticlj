@@ -3,7 +3,7 @@
         [ticlj.spec-helper]
         [ticlj.player.human])
   (:require [ticlj.board.basic :as board]
-            [ticlj.player :as player])
+            [ticlj.player.aplayer :as player])
   (:import [ticlj.player.human Human]))
 
 

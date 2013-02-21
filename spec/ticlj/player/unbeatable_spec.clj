@@ -2,7 +2,7 @@
   (:use [speclj.core]
         [ticlj.spec-helper]
         [ticlj.player.unbeatable])
-  (:require [ticlj.player :as player]
+  (:require [ticlj.player.aplayer :as player]
             [ticlj.rules.basic :as rules]
             [ticlj.board.basic :as board])
   (:import [ticlj.player.unbeatable UnbeatableAI]))

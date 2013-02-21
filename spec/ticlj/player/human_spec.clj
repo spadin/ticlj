@@ -1,13 +1,13 @@
-(ns ticlj.model.player.human-spec
+(ns ticlj.player.human-spec
   (:use [speclj.core]
         [ticlj.spec-helper]
-        [ticlj.model.player.human])
+        [ticlj.player.human])
   (:require [ticlj.model.board :as board]
-            [ticlj.model.player :as player])
-  (:import [ticlj.model.player.human Human]))
+            [ticlj.player :as player])
+  (:import [ticlj.player.human Human]))
 
 
-(describe "ticlj.model.player.human"
+(describe "ticlj.player.human"
   (it "returns an index as the move"
     (with-out-str
       (should= 0

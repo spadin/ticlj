@@ -1,9 +1,9 @@
-(ns ticlj.model.player.medium
-  (:use [ticlj.model.player.unbeatable])
+(ns ticlj.player.medium
+  (:use [ticlj.player.unbeatable])
   (:require [ticlj.model.rules :as rules]
             [ticlj.model.board :as board]
-            [ticlj.model.player :as player])
-  (:import [ticlj.model.player Player]))
+            [ticlj.player :as player])
+  (:import [ticlj.player Player]))
 
 (defrecord MediumAI [mark]
   Player

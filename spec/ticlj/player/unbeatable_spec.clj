@@ -1,13 +1,13 @@
-(ns ticlj.model.player.unbeatable-spec
+(ns ticlj.player.unbeatable-spec
   (:use [speclj.core]
         [ticlj.spec-helper]
-        [ticlj.model.player.unbeatable])
-  (:require [ticlj.model.player :as player]
+        [ticlj.player.unbeatable])
+  (:require [ticlj.player :as player]
             [ticlj.model.rules :as rules]
             [ticlj.model.board :as board])
-  (:import [ticlj.model.player.unbeatable UnbeatableAI]))
+  (:import [ticlj.player.unbeatable UnbeatableAI]))
 
-(describe "ticlj.game.model.player.unbeatable"
+(describe "ticlj.player.unbeatable"
   (it "never returns true when max-depth is nil"
     (should= false
              (max-depth-reached? 1 nil)))

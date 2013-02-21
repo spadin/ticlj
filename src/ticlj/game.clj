@@ -2,15 +2,15 @@
   (:require [ticlj.model.board :as board]
             [ticlj.printer.basic :as printer]
             [ticlj.model.rules :as rules]
-            [ticlj.model.player :as player]
-            [ticlj.model.player.human :as human]
-            [ticlj.model.player.easy :as easy]
-            [ticlj.model.player.medium :as medium]
-            [ticlj.model.player.unbeatable :as unbeatable])
-  (:import [ticlj.model.player.human Human]
-           [ticlj.model.player.easy EasyAI]
-           [ticlj.model.player.medium MediumAI]
-           [ticlj.model.player.unbeatable UnbeatableAI]))
+            [ticlj.player :as player]
+            [ticlj.player.human :as human]
+            [ticlj.player.easy :as easy]
+            [ticlj.player.medium :as medium]
+            [ticlj.player.unbeatable :as unbeatable])
+  (:import [ticlj.player.human Human]
+           [ticlj.player.easy EasyAI]
+           [ticlj.player.medium MediumAI]
+           [ticlj.player.unbeatable UnbeatableAI]))
 
 (defn build-player [player-1 player-2 mark]
   (if (= mark board/x-mark)

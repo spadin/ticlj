@@ -1,13 +1,13 @@
-(ns ticlj.model.player.medium-spec
+(ns ticlj.player.medium-spec
   (:use [speclj.core]
         [ticlj.spec-helper]
-        [ticlj.model.player.medium])
-  (:require [ticlj.model.player :as player]
+        [ticlj.player.medium])
+  (:require [ticlj.player :as player]
             [ticlj.model.rules :as rules]
             [ticlj.model.board :as board])
-  (:import [ticlj.model.player.medium MediumAI]))
+  (:import [ticlj.player.medium MediumAI]))
 
-(describe "ticlj.game.model.player.medium"
+(describe "ticlj.player.medium"
   (it "returns a move to win game"
     (let [board [board/x-mark board/o-mark board/x-mark
                  board/nomark board/o-mark board/nomark

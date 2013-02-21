@@ -1,9 +1,9 @@
-(ns ticlj.model.player.human
+(ns ticlj.player.human
   (:require [ticlj.printer.basic :as printer]
             [ticlj.model.rules :as rules]
             [ticlj.model.board :as board]
-            [ticlj.model.player :as player])
-  (:import [ticlj.model.player Player]))
+            [ticlj.player :as player])
+  (:import [ticlj.player Player]))
 
 (defrecord Human [mark]
   Player

@@ -1,13 +1,13 @@
-(ns ticlj.model.player.easy-spec
+(ns ticlj.player.easy-spec
   (:use [speclj.core]
         [ticlj.spec-helper]
-        [ticlj.model.player.easy])
-  (:require [ticlj.model.player :as player]
+        [ticlj.player.easy])
+  (:require [ticlj.player :as player]
             [ticlj.model.rules :as rules]
             [ticlj.model.board :as board])
-  (:import [ticlj.model.player.easy EasyAI]))
+  (:import [ticlj.player.easy EasyAI]))
 
-(describe "ticlj.game.model.player.easy"
+(describe "ticlj.player.easy"
   (it "makes the first available move in an empty board"
     (should= 0
              (make-move board/x-mark board/empty-board)))

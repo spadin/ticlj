@@ -3,7 +3,7 @@
         [ticlj.spec-helper]
         [ticlj.player.medium])
   (:require [ticlj.player :as player]
-            [ticlj.model.rules :as rules]
+            [ticlj.rules.basic :as rules]
             [ticlj.board.basic :as board])
   (:import [ticlj.player.medium MediumAI]))
 

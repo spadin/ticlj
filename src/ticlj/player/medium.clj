@@ -1,6 +1,6 @@
 (ns ticlj.player.medium
   (:use [ticlj.player.unbeatable])
-  (:require [ticlj.model.rules :as rules]
+  (:require [ticlj.rules.basic :as rules]
             [ticlj.board.basic :as board]
             [ticlj.player :as player])
   (:import [ticlj.player Player]))

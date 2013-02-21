@@ -2,7 +2,7 @@
   (:use [speclj.core] [ticlj.spec-helper] [ticlj.printer.basic])
   (:require [ticlj.board.basic :as board]))
 
-(describe "ticlj.io.cli"
+(describe "ticlj.printer.basic"
   (it "prompts player x for a move"
     (should= "Player x choose the index of an empty spot for your next move\n"
              (with-out-str (with-in-str "0" (prompt-player board/x-mark)))))

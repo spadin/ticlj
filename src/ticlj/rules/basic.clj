@@ -1,4 +1,4 @@
-(ns ticlj.model.rules
+(ns ticlj.rules.basic
   (:require [ticlj.board.basic :as board]))
 
 (def winning-combinations [#{0 1 2} #{3 4 5} #{6 7 8}

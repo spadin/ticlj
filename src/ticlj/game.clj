@@ -1,6 +1,6 @@
 (ns ticlj.game
   (:require [ticlj.model.board :as board]
-            [ticlj.io.cli :as printer]
+            [ticlj.printer.basic :as printer]
             [ticlj.model.rules :as rules]
             [ticlj.model.player :as player]
             [ticlj.model.player.human :as human]

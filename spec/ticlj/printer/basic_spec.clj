@@ -1,5 +1,5 @@
-(ns ticlj.io.cli-spec
-  (:use [speclj.core] [ticlj.spec-helper] [ticlj.io.cli])
+(ns ticlj.printer.basic-spec
+  (:use [speclj.core] [ticlj.spec-helper] [ticlj.printer.basic])
   (:require [ticlj.model.board :as board]))
 
 (describe "ticlj.io.cli"

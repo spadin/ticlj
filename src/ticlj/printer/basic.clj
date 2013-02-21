@@ -1,4 +1,4 @@
-(ns ticlj.io.cli
+(ns ticlj.printer.basic
   (:require [ticlj.model.board :as board]))
 
 (def separator "---|---|---")

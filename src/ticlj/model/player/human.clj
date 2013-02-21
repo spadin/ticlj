@@ -1,5 +1,5 @@
 (ns ticlj.model.player.human
-  (:require [ticlj.io.cli :as printer]
+  (:require [ticlj.printer.basic :as printer]
             [ticlj.model.rules :as rules]
             [ticlj.model.board :as board]
             [ticlj.model.player :as player])

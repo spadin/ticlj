@@ -8,17 +8,35 @@
 (defn make-input [coll]
   (apply str (interleave coll (repeat "\n"))))
 
-(def tied-game-board
+(def tied-game-board-basic
   [board/x-mark board/o-mark board/x-mark
    board/x-mark board/x-mark board/o-mark
    board/o-mark board/x-mark board/o-mark])
 
-(def x-winning-game-board
+(def x-winning-game-board-basic
   [board/x-mark board/x-mark board/x-mark
    board/o-mark board/o-mark board/nomark
    board/nomark board/nomark board/nomark])
 
-(def o-winning-game-board
+(def o-winning-game-board-basic
   [board/x-mark board/x-mark board/nomark
    board/o-mark board/o-mark board/o-mark
    board/nomark board/x-mark board/nomark])
+
+(def tied-game-board-four-by-four
+  [board/x-mark board/o-mark board/x-mark board/o-mark
+   board/o-mark board/x-mark board/o-mark board/x-mark
+   board/x-mark board/o-mark board/x-mark board/o-mark
+   board/x-mark board/o-mark board/x-mark board/o-mark])
+
+(def x-winning-game-board-four-by-four
+  [board/x-mark board/x-mark board/x-mark board/x-mark
+   board/o-mark board/o-mark board/nomark board/nomark
+   board/o-mark board/o-mark board/nomark board/nomark
+   board/nomark board/nomark board/nomark board/nomark])
+
+(def o-winning-game-board-four-by-four
+  [board/o-mark board/x-mark board/x-mark board/x-mark
+   board/nomark board/o-mark board/nomark board/x-mark
+   board/nomark board/nomark board/o-mark board/nomark
+   board/nomark board/nomark board/nomark board/o-mark])

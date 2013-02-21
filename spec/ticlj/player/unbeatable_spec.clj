@@ -22,15 +22,15 @@
 
   (it "returns a score of 1000 for winning at depth 0"
     (should= 1000
-             (calculate-score board/x-mark x-winning-game-board 0 0)))
+             (calculate-score board/x-mark x-winning-game-board-basic 0 0)))
 
   (it "returns a score of 0 for tied game"
     (should= 0
-             (calculate-score board/x-mark tied-game-board 0 0)))
+             (calculate-score board/x-mark tied-game-board-basic 0 0)))
 
   (it "returns a score of -1000 for losing game at 0 depth"
     (should= -1000
-             (calculate-score board/x-mark o-winning-game-board 0 0)))
+             (calculate-score board/x-mark o-winning-game-board-basic 0 0)))
 
   (it "returns the ab-value when game is not over"
     (should= -9999

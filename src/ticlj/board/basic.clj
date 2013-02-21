@@ -9,10 +9,17 @@
 (def allowed-marks [x-mark o-mark])
 
 (defmulti multi-empty-board :game-type)
+
 (defmethod multi-empty-board game-type/basic [_]
   [nomark nomark nomark
    nomark nomark nomark
    nomark nomark nomark])
+
+(defmethod multi-empty-board game-type/four-by-four [_]
+  [nomark nomark nomark nomark
+   nomark nomark nomark nomark
+   nomark nomark nomark nomark
+   nomark nomark nomark nomark])
 
 (defn empty-board []
   (multi-empty-board {:game-type *game-type*}))
@@ -20,8 +27,12 @@
 (defn allowed-mark? [mark] (not (nil? (some #{mark} allowed-marks))))
 
 (defmulti multi-allowed-index? :game-type)
+
 (defmethod multi-allowed-index? game-type/basic [this]
-  (and (>= (:index this) 0) (<= (:index this) 8)))
+  (and (>= (:index this) 0) (< (:index this) 9)))
+
+(defmethod multi-allowed-index? game-type/four-by-four [this]
+  (and (>= (:index this) 0) (< (:index this) 16)))
 
 (defn allowed-index? [index]
   (multi-allowed-index? {:game-type *game-type* :index index}))

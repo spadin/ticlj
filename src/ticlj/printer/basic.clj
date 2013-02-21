@@ -4,6 +4,7 @@
             [ticlj.rules.game-type :as game-type]))
 
 (defmulti multi-print-board :game-type)
+
 (defmethod multi-print-board game-type/basic [this]
   (let [separator "---|---|---"
         index-string (fn [board index]
@@ -22,6 +23,29 @@
     (println (line-string 1 (:board this)))
     (println separator)
     (println (line-string 2 (:board this)))))
+
+(defmethod multi-print-board game-type/four-by-four [this]
+  (let [separator "----|----|----|----"
+        index-string (fn [board index]
+                         (let [mark (board/mark-at-index index board)]
+                              (format "%-2s" (if (= mark board/nomark) index mark))))
+        line-string (fn [line board]
+                        (str " "
+                             (-> board (index-string (* line 4)))
+                             " | "
+                             (-> board (index-string (+ (* line 4) 1)))
+                             " | "
+                             (-> board (index-string (+ (* line 4) 2)))
+                             " | "
+                             (-> board (index-string (+ (* line 4) 3)))
+                             " "))]
+    (println (line-string 0 (:board this)))
+    (println separator)
+    (println (line-string 1 (:board this)))
+    (println separator)
+    (println (line-string 2 (:board this)))
+    (println separator)
+    (println (line-string 3 (:board this)))))
 
 (defn print-board [board]
   (multi-print-board {:game-type *game-type* :board board}))
@@ -45,4 +69,8 @@
           (println "Game over, tied game")))
 
 (defn prompt-game-type []
-  (prompt-integer (str "Please choose a game:\n1. 3x3 Tic Tac Toe\n2. 4x4 Tic Tac Toe")))
+  (let [selection (prompt-integer (str "Please choose a game:\n1. 3x3 Tic Tac Toe\n2. 4x4 Tic Tac Toe"))]
+    (if (= 1 selection)
+        game-type/basic
+        game-type/four-by-four)))
+

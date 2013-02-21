@@ -1,7 +1,33 @@
 (ns ticlj.board.basic-spec
-  (:use [speclj.core] [ticlj.board.basic]))
+  (:use [speclj.core]
+        [ticlj.board.basic]
+        [ticlj.rules.game-type :only (*game-type*)])
+  (:require [ticlj.rules.game-type :as game-type]))
 
 (describe "ticlj.basic.board"
+  (context "3x3 game-type"
+    (it "returns a board with 9 spaces"
+      (should= 9
+               (count (empty-board))))
+
+    (it "throws an error when index is not in proper range"
+      (should-throw Exception (validate-mark-at-index x-mark 9 (empty-board)))))
+
+
+  (context "4x4 game-type"
+    (it "returns a board with 16 spaces"
+      (binding [*game-type* game-type/four-by-four]
+        (should= 16
+                 (count (empty-board)))))
+
+    (it "doesn't throw an error when index is in proper range"
+      (binding [*game-type* game-type/four-by-four]
+        (should-not-throw (validate-mark-at-index x-mark 9 (empty-board)))))
+
+    (it "throws an error when index is not in proper range"
+      (binding [*game-type* game-type/four-by-four]
+        (should-throw Exception (validate-mark-at-index x-mark 16 (empty-board))))))
+
   (it "returns blank space when board index is not occupied"
     (should= nomark
              (mark-at-index 0 (empty-board))))
@@ -22,9 +48,6 @@
 
   (it "throws an error when mark is not recognized"
     (should-throw Exception (validate-mark-at-index "y" 0 (empty-board))))
-
-  (it "throws an error when index is not in proper range"
-    (should-throw Exception (validate-mark-at-index x-mark 9 (empty-board))))
 
   (it "throws an error if you try to pick a spot that's taken"
     (let [board [x-mark nomark nomark

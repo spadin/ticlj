@@ -1,4 +1,5 @@
 (ns ticlj.core
+  (:use [ticlj.rules.game-type :only (*game-type*)])
   (:require [ticlj.board.basic :as board]
             [ticlj.printer.basic :as printer]
             [ticlj.rules.basic :as rules]
@@ -31,7 +32,7 @@
 
 
 (defn play
-  ([game-type player-1 player-2] (play board/x-mark (board/empty-board) player-1 player-2))
+  ([player-1 player-2] (play board/x-mark (board/empty-board) player-1 player-2))
   ([mark board player-1 player-2]
     (printer/print-board board)
     (if (rules/gameover? board)
@@ -41,10 +42,10 @@
               player-1 player-2))))
 
 (defn start-game []
-  (let [game-type (printer/prompt-game-type)
-        player-1 (printer/prompt-player-type 1)
-        player-2 (printer/prompt-player-type 2)]
-    (play game-type player-1 player-2)))
+  (binding [*game-type* (printer/prompt-game-type)]
+    (let [player-1 (printer/prompt-player-type 1)
+          player-2 (printer/prompt-player-type 2)]
+      (play player-1 player-2))))
 
 (defn -main [& args]
   (start-game))

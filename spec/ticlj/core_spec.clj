@@ -16,17 +16,17 @@
 (describe "ticlj.core"
   (it "prints that the game is a tie"
     (should (.contains (with-out-str (with-in-str (make-input '(0 1 2 5 3 6 4 8 7))
-                         (play 1 1 1)))
+                         (play 1 1)))
                        "tied game")))
 
   (it "prints that x has won the game"
     (should (.contains (with-out-str (with-in-str (make-input '(0 3 1 4 2))
-                         (play 1 1 1)))
+                         (play 1 1)))
                        "x has won")))
 
   (it "prints that o has won the game"
     (should (.contains (with-out-str (with-in-str (make-input '(0 3 1 4 7 5))
-                         (play 1 1 1)))
+                         (play 1 1)))
                        "o has won")))
 
   (it "builds a human player"
@@ -47,5 +47,5 @@
 
   (it "calls play with players and game type when game is started"
     (with-out-str (with-in-str (make-input '(1 1 1))
-      (with-redefs [play (fn [game-type player-1 player-2] "play-called")]
+      (with-redefs [play (fn [player-1 player-2] "play-called")]
                    (should= "play-called" (start-game)))))))

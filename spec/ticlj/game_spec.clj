@@ -2,7 +2,7 @@
   (:use [speclj.core]
         [ticlj.spec-helper]
         [ticlj.game])
-  (:require [ticlj.model.board :as board]
+  (:require [ticlj.board.basic :as board]
             [ticlj.player :as player]
             [ticlj.player.human :as human]
             [ticlj.player.easy :as easy]

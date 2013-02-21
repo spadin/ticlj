@@ -4,7 +4,7 @@
         [ticlj.player.unbeatable])
   (:require [ticlj.player :as player]
             [ticlj.model.rules :as rules]
-            [ticlj.model.board :as board])
+            [ticlj.board.basic :as board])
   (:import [ticlj.player.unbeatable UnbeatableAI]))
 
 (describe "ticlj.player.unbeatable"

@@ -1,5 +1,5 @@
 (ns ticlj.game
-  (:require [ticlj.model.board :as board]
+  (:require [ticlj.board.basic :as board]
             [ticlj.printer.basic :as printer]
             [ticlj.model.rules :as rules]
             [ticlj.player :as player]

@@ -1,5 +1,5 @@
 (ns ticlj.spec-helper
-  (:require [ticlj.model.board :as board]))
+  (:require [ticlj.board.basic :as board]))
 
 (defmacro dbg[x] `(let [x# ~x] (println "dbg:" '~x "=" x#) x#))
 

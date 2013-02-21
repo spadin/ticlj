@@ -4,7 +4,7 @@
         [ticlj.player.easy])
   (:require [ticlj.player :as player]
             [ticlj.model.rules :as rules]
-            [ticlj.model.board :as board])
+            [ticlj.board.basic :as board])
   (:import [ticlj.player.easy EasyAI]))
 
 (describe "ticlj.player.easy"

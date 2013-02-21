@@ -1,4 +1,4 @@
-(ns ticlj.model.board)
+(ns ticlj.board.basic)
 
 (def x-mark "x")
 (def o-mark "o")

@@ -4,7 +4,7 @@
         [ticlj.player.medium])
   (:require [ticlj.player :as player]
             [ticlj.model.rules :as rules]
-            [ticlj.model.board :as board])
+            [ticlj.board.basic :as board])
   (:import [ticlj.player.medium MediumAI]))
 
 (describe "ticlj.player.medium"

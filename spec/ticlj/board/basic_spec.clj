@@ -1,7 +1,7 @@
-(ns ticlj.model.board-spec
-  (:use [speclj.core] [ticlj.model.board]))
+(ns ticlj.board.basic-spec
+  (:use [speclj.core] [ticlj.board.basic]))
 
-(describe "ticlj.model.board"
+(describe "ticlj.basic.board"
   (it "returns blank space when board index is not occupied"
     (should= nomark
              (mark-at-index 0 empty-board)))

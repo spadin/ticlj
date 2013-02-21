@@ -1,6 +1,6 @@
 (ns ticlj.model.rules-spec
   (:use [speclj.core] [ticlj.spec-helper] [ticlj.model.rules])
-  (:require [ticlj.model.board :as board]))
+  (:require [ticlj.board.basic :as board]))
 
 (describe "ticlj.model.rules"
   (it "determines the next player"

@@ -2,7 +2,7 @@
   (:use [speclj.core]
         [ticlj.spec-helper]
         [ticlj.player.human])
-  (:require [ticlj.model.board :as board]
+  (:require [ticlj.board.basic :as board]
             [ticlj.player :as player])
   (:import [ticlj.player.human Human]))
 

@@ -1,5 +1,5 @@
 (ns ticlj.printer.basic
-  (:require [ticlj.model.board :as board]))
+  (:require [ticlj.board.basic :as board]))
 
 (def separator "---|---|---")
 

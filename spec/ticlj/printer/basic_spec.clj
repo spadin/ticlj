@@ -1,6 +1,6 @@
 (ns ticlj.printer.basic-spec
   (:use [speclj.core] [ticlj.spec-helper] [ticlj.printer.basic])
-  (:require [ticlj.model.board :as board]))
+  (:require [ticlj.board.basic :as board]))
 
 (describe "ticlj.io.cli"
   (it "prompts player x for a move"

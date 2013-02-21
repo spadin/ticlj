@@ -1,6 +1,6 @@
 (ns ticlj.player.easy
   (:require [ticlj.model.rules :as rules]
-            [ticlj.model.board :as board]
+            [ticlj.board.basic :as board]
             [ticlj.player :as player])
   (:import [ticlj.player Player]))
 

@@ -5,4 +5,4 @@
                  [speclj "2.5.0"]]
   :plugins [[speclj "2.5.0"]]
   :test-paths ["spec/"]
-  :main ticlj.game)
+  :main ticlj.core)

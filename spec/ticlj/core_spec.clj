@@ -1,7 +1,7 @@
-(ns ticlj.game-spec
+(ns ticlj.core-spec
   (:use [speclj.core]
         [ticlj.spec-helper]
-        [ticlj.game])
+        [ticlj.core])
   (:require [ticlj.board.basic :as board]
             [ticlj.player :as player]
             [ticlj.player.human :as human]
@@ -13,7 +13,7 @@
            [ticlj.player.medium MediumAI]
            [ticlj.player.human Human]))
 
-(describe "ticlj.game"
+(describe "ticlj.core"
   (it "prints that the game is a tie"
     (should (.contains (with-out-str (with-in-str (make-input '(0 1 2 5 3 6 4 8 7))
                          (play 1 1 1)))

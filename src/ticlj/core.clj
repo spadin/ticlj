@@ -1,4 +1,4 @@
-(ns ticlj.game
+(ns ticlj.core
   (:require [ticlj.board.basic :as board]
             [ticlj.printer.basic :as printer]
             [ticlj.rules.basic :as rules]

@@ -1,27 +1,30 @@
 (ns ticlj.printer.basic
-  (:require [ticlj.board.basic :as board]))
+  (:use [ticlj.rules.game-type :only (*game-type*)])
+  (:require [ticlj.board.basic :as board]
+            [ticlj.rules.game-type :as game-type]))
 
-(def separator "---|---|---")
-
-(defn index-string [board index]
-  (let [mark (board/mark-at-index index board)]
-    (if (= mark board/nomark) index mark)))
-
-(defn line-string [line board]
-  (str " "
-       (-> board (index-string (* line 3)))
-       " | "
-       (-> board (index-string (+ (* line 3) 1)))
-       " | "
-       (-> board (index-string (+ (* line 3) 2)))
-       " "))
+(defmulti multi-print-board :game-type)
+(defmethod multi-print-board game-type/basic [this]
+  (let [separator "---|---|---"
+        index-string (fn [board index]
+                         (let [mark (board/mark-at-index index board)]
+                              (if (= mark board/nomark) index mark)))
+        line-string (fn [line board]
+                        (str " "
+                             (-> board (index-string (* line 3)))
+                             " | "
+                             (-> board (index-string (+ (* line 3) 1)))
+                             " | "
+                             (-> board (index-string (+ (* line 3) 2)))
+                             " "))]
+    (println (line-string 0 (:board this)))
+    (println separator)
+    (println (line-string 1 (:board this)))
+    (println separator)
+    (println (line-string 2 (:board this)))))
 
 (defn print-board [board]
-  (println (line-string 0 board))
-  (println separator)
-  (println (line-string 1 board))
-  (println separator)
-  (println (line-string 2 board)))
+  (multi-print-board {:game-type *game-type* :board board}))
 
 (defn prompt-integer [message]
   (println message)

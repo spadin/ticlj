@@ -12,8 +12,6 @@
            [ticlj.player.medium MediumAI]
            [ticlj.player.unbeatable UnbeatableAI]))
 
-(def ^:dynamic *game-type* "3x3")
-
 (defn build-player [player-1 player-2 mark]
   (if (= mark board/x-mark)
     (if (= player-1 1)

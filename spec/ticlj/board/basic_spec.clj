@@ -4,7 +4,7 @@
 (describe "ticlj.basic.board"
   (it "returns blank space when board index is not occupied"
     (should= nomark
-             (mark-at-index 0 empty-board)))
+             (mark-at-index 0 (empty-board))))
 
   (it "returns x when player x has selected that index"
     (let [board [x-mark nomark nomark
@@ -21,10 +21,10 @@
                (mark-at-index 0 board))))
 
   (it "throws an error when mark is not recognized"
-    (should-throw Exception (validate-mark-at-index "y" 0 empty-board)))
+    (should-throw Exception (validate-mark-at-index "y" 0 (empty-board))))
 
   (it "throws an error when index is not in proper range"
-    (should-throw Exception (validate-mark-at-index x-mark 9 empty-board)))
+    (should-throw Exception (validate-mark-at-index x-mark 9 (empty-board))))
 
   (it "throws an error if you try to pick a spot that's taken"
     (let [board [x-mark nomark nomark
@@ -69,7 +69,7 @@
                (get-empty-indices board))))
 
   (it "knows when the board is not full"
-    (should= false (full-board? empty-board)))
+    (should= false (full-board? (empty-board))))
 
   (it "knows when the board is full"
     (let [board [x-mark x-mark x-mark

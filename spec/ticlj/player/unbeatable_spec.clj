@@ -34,7 +34,7 @@
 
   (it "returns the ab-value when game is not over"
     (should= -9999
-             (calculate-score board/x-mark board/empty-board 0 -9999)))
+             (calculate-score board/x-mark (board/empty-board) 0 -9999)))
 
   (it "returns the move the fills the board"
     (let [board [board/x-mark board/x-mark board/o-mark
@@ -55,7 +55,7 @@
   (context "slow running tests" (tags :slow-tests)
     (it "returns the best first move"
       (should= 0
-              (alpha-beta board/x-mark board/empty-board nil)))
+              (alpha-beta board/x-mark (board/empty-board) nil)))
 
     (it "returns the best second move"
       (let [board [board/x-mark board/nomark board/nomark

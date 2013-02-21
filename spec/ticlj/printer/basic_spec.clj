@@ -20,7 +20,7 @@
       (should= 1 (prompt-integer "enter an interger")))))
 
   (it "return an empty board line string"
-    (let [board board/empty-board]
+    (let [board (board/empty-board)]
       (should= " 0 | 1 | 2 "
                (line-string 0 board))))
 
@@ -32,7 +32,7 @@
                (line-string 0 board))))
 
   (it "prints an empty board"
-    (let [board board/empty-board]
+    (let [board (board/empty-board)]
       (should= " 0 | 1 | 2 \n---|---|---\n 3 | 4 | 5 \n---|---|---\n 6 | 7 | 8 \n"
                (with-out-str (print-board board)))))
 

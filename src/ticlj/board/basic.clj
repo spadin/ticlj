@@ -6,9 +6,9 @@
 
 (def allowed-marks [x-mark o-mark])
 
-(def empty-board [nomark nomark nomark
-                  nomark nomark nomark
-                  nomark nomark nomark])
+(defn empty-board [] [nomark nomark nomark
+                      nomark nomark nomark
+                      nomark nomark nomark])
 
 (defn allowed-mark? [mark] (not (nil? (some #{mark} allowed-marks))))
 

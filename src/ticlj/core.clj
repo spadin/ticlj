@@ -33,7 +33,7 @@
 
 
 (defn play
-  ([game-type player-1 player-2] (play board/x-mark board/empty-board player-1 player-2))
+  ([game-type player-1 player-2] (play board/x-mark (board/empty-board) player-1 player-2))
   ([mark board player-1 player-2]
     (printer/print-board board)
     (if (rules/gameover? board)

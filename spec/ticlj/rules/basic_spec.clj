@@ -22,11 +22,11 @@
 
   (it "determines that there is no winner"
     (should= false
-             (winner? board/empty-board)))
+             (winner? (board/empty-board))))
 
   (it "knows that the game has not ended"
     (should= false
-             (gameover? board/empty-board)))
+             (gameover? (board/empty-board))))
 
   (it "knows the game is over when there is a winner"
     (should= true

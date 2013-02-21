@@ -10,7 +10,7 @@
 (describe "ticlj.player.easy"
   (it "makes the first available move in an empty board"
     (should= 0
-             (make-move board/x-mark board/empty-board)))
+             (make-move board/x-mark (board/empty-board))))
 
   (it "make the first available move in a non-empty board"
     (let [board [board/x-mark board/nomark board/nomark

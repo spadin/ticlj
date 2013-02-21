@@ -48,4 +48,13 @@
   (it "calls play with players and game type when game is started"
     (with-out-str (with-in-str (make-input '(1 1 1))
       (with-redefs [play (fn [game-type player-1 player-2] "play-called")]
-                   (should= "play-called" (start-game)))))))
+                   (should= "play-called" (start-game))))))
+
+  (it "defines the default game-type as 3x3"
+    (should= "3x3"
+             *game-type*))
+
+  (it "allows re-binding of game-type"
+    (binding [*game-type* "4x4"]
+      (should= "4x4"
+               ticlj.core/*game-type*))))

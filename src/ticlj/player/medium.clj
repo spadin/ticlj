@@ -1,9 +1,14 @@
 (ns ticlj.player.medium
-  (:use [ticlj.player.unbeatable])
+  (:use [ticlj.player.unbeatable]
+        [ticlj.rules.game-type :only (*game-type*)])
   (:require [ticlj.rules.basic :as rules]
             [ticlj.board.basic :as board]
-            [ticlj.player.aplayer :as player])
+            [ticlj.player.aplayer :as player]
+            [ticlj.rules.game-type :as game-type])
   (:import [ticlj.player.aplayer APlayer]))
+
+(defn determine-max-depth []
+  (if (= *game-type* game-type/basic) 4 2))
 
 (defrecord MediumAI [mark]
   APlayer

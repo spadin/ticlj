@@ -21,6 +21,11 @@
    nomark nomark nomark nomark
    nomark nomark nomark nomark])
 
+(defmethod multi-empty-board game-type/three-cubed [_]
+  [nomark nomark nomark nomark nomark nomark nomark nomark nomark
+   nomark nomark nomark nomark nomark nomark nomark nomark nomark
+   nomark nomark nomark nomark nomark nomark nomark nomark nomark])
+
 (defn empty-board []
   (multi-empty-board {:game-type *game-type*}))
 
@@ -33,6 +38,9 @@
 
 (defmethod multi-allowed-index? game-type/four-by-four [this]
   (and (>= (:index this) 0) (< (:index this) 16)))
+
+(defmethod multi-allowed-index? game-type/three-cubed [this]
+  (and (>= (:index this) 0) (< (:index this) 27)))
 
 (defn allowed-index? [index]
   (multi-allowed-index? {:game-type *game-type* :index index}))

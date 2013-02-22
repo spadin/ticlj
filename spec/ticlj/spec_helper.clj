@@ -40,3 +40,42 @@
    board/nomark board/o-mark board/nomark board/x-mark
    board/nomark board/nomark board/o-mark board/nomark
    board/nomark board/nomark board/nomark board/o-mark])
+
+(def tied-game-board-three-cubed
+  [board/x-mark board/o-mark board/x-mark
+   board/x-mark board/x-mark board/o-mark
+   board/o-mark board/x-mark board/o-mark
+
+   board/o-mark board/x-mark board/o-mark
+   board/o-mark board/o-mark board/x-mark
+   board/x-mark board/o-mark board/x-mark
+
+   board/x-mark board/o-mark board/x-mark
+   board/x-mark board/x-mark board/o-mark
+   board/o-mark board/x-mark board/o-mark])
+
+(def x-winning-game-board-three-cubed
+  [board/x-mark board/nomark board/nomark
+   board/nomark board/o-mark board/o-mark
+   board/nomark board/nomark board/nomark
+
+   board/nomark board/nomark board/nomark
+   board/nomark board/x-mark board/o-mark
+   board/nomark board/nomark board/nomark
+
+   board/nomark board/nomark board/nomark
+   board/nomark board/nomark board/nomark
+   board/nomark board/nomark board/x-mark])
+
+(def o-winning-game-board-three-cubed
+  [board/nomark board/nomark board/o-mark
+   board/x-mark board/nomark board/nomark
+   board/nomark board/nomark board/nomark
+
+   board/nomark board/nomark board/nomark
+   board/nomark board/o-mark board/nomark
+   board/nomark board/x-mark board/nomark
+
+   board/nomark board/x-mark board/nomark
+   board/nomark board/nomark board/nomark
+   board/o-mark board/nomark board/nomark])

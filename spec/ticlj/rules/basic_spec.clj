@@ -74,4 +74,39 @@
     (it "knows the game is over when the board is full"
       (binding [*game-type* game-type/four-by-four]
         (should= true
-                 (gameover? tied-game-board-four-by-four))))))
+                 (gameover? tied-game-board-four-by-four)))))
+
+  (context "3x3x3 game type"
+    (it "determines that x is the winner"
+      (binding [*game-type* game-type/three-cubed]
+        (should= board/x-mark
+                 (winner x-winning-game-board-three-cubed))))
+
+    (it "determines that o is the winner"
+      (binding [*game-type* game-type/three-cubed]
+        (should= board/o-mark
+                 (winner o-winning-game-board-three-cubed))))
+
+    (it "determines that there is a winner"
+      (binding [*game-type* game-type/three-cubed]
+        (should (winner? x-winning-game-board-three-cubed))))
+
+    (it "determines that there is no winner"
+      (binding [*game-type* game-type/three-cubed]
+        (should= false
+                 (winner? (board/empty-board)))))
+
+    (it "knows that the game has not ended"
+      (binding [*game-type* game-type/three-cubed]
+        (should= false
+                 (gameover? (board/empty-board)))))
+
+    (it "knows the game is over when there is a winner"
+      (binding [*game-type* game-type/three-cubed]
+        (should= true
+                 (gameover? x-winning-game-board-three-cubed))))
+
+    (it "knows the game is over when the board is full"
+      (binding [*game-type* game-type/three-cubed]
+        (should= true
+                 (gameover? tied-game-board-three-cubed))))))

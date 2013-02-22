@@ -18,25 +18,30 @@
 (defn winning-combinations []
   (multi-winning-combinations {:game-type *game-type*}))
 
-(defn is-winner? [mark board]
-  (some #(= (set (filter % (board/get-moves mark board))) %) (winning-combinations)))
+(def is-winner?
+  (memoize (fn [mark board]
+    (some #(= (set (filter % (board/get-moves mark board))) %) (winning-combinations)))))
 
-(defn winner [board]
-  (if (is-winner? board/x-mark board)
-    board/x-mark
-    (if (is-winner? board/o-mark board)
-      board/o-mark
-      nil)))
+(def winner
+  (memoize (fn [board]
+    (if (is-winner? board/x-mark board)
+      board/x-mark
+      (if (is-winner? board/o-mark board)
+        board/o-mark
+        nil)))))
 
-(defn winner? [board]
-  (not (nil? (winner board))))
+(def winner?
+  (memoize (fn [board]
+    (not (nil? (winner board))))))
 
-(defn gameover? [board]
-  (if (winner? board)
-    true
-    (if (board/full-board? board)
+(def gameover?
+  (memoize (fn [board]
+    (if (winner? board)
       true
-      false)))
+      (if (board/full-board? board)
+        true
+        false)))))
 
-(defn next-player [mark]
-  (if (= board/x-mark mark) board/o-mark board/x-mark))
+(def next-player
+  (memoize (fn [mark]
+    (if (= board/x-mark mark) board/o-mark board/x-mark))))

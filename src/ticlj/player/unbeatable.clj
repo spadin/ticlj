@@ -13,11 +13,13 @@
   (move [this board]
     (alpha-beta (:mark this) board nil)))
 
-(defn max-mark-winner? [max-mark board]
-  (= (rules/winner board) max-mark))
+(def max-mark-winner?
+  (memoize (fn [max-mark board]
+    (= (rules/winner board) max-mark))))
 
-(defn min-mark-winner? [max-mark board]
-  (= (rules/winner board) (rules/next-player max-mark)))
+(def min-mark-winner?
+  (memoize (fn [max-mark board]
+    (= (rules/winner board) (rules/next-player max-mark)))))
 
 (defn calculate-score [max-mark board depth ab-value]
   (if (rules/gameover? board)

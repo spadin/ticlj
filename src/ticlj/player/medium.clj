@@ -1,9 +1,7 @@
 (ns ticlj.player.medium
   (:use [ticlj.player.unbeatable]
         [ticlj.rules.game-type :only (*game-type*)])
-  (:require [ticlj.rules.basic :as rules]
-            [ticlj.board.basic :as board]
-            [ticlj.player.aplayer :as player]
+  (:require [ticlj.player.aplayer :as player]
             [ticlj.rules.game-type :as game-type])
   (:import [ticlj.player.aplayer APlayer]))
 

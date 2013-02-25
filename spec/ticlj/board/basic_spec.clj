@@ -15,18 +15,19 @@
 
 
   (context "4x4 game-type"
+
+    (around [it]
+      (binding [*game-type* game-type/four-by-four] (it)))
+
     (it "returns a board with 16 spaces"
-      (binding [*game-type* game-type/four-by-four]
         (should= 16
-                 (count (empty-board)))))
+                 (count (empty-board))))
 
     (it "doesn't throw an error when index is in proper range"
-      (binding [*game-type* game-type/four-by-four]
-        (should-not-throw (validate-mark-at-index x-mark 9 (empty-board)))))
+        (should-not-throw (validate-mark-at-index x-mark 9 (empty-board))))
 
     (it "throws an error when index is not in proper range"
-      (binding [*game-type* game-type/four-by-four]
-        (should-throw Exception (validate-mark-at-index x-mark 16 (empty-board))))))
+        (should-throw Exception (validate-mark-at-index x-mark 16 (empty-board)))))
 
   (context "3x3x3 game-type"
     (it "returns a board with 27 spaces"

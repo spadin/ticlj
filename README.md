@@ -1,6 +1,6 @@
 # Ticlj
 
-## Command-line Tic Tac Toe game in Clojure
+## A Command-line Tic Tac Toe game in Clojure
 
 Running specs
 

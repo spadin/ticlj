@@ -11,20 +11,13 @@
 (defmulti multi-empty-board :game-type)
 
 (defmethod multi-empty-board game-type/basic [_]
-  [nomark nomark nomark
-   nomark nomark nomark
-   nomark nomark nomark])
+  (vec (repeat 9 nomark)))
 
 (defmethod multi-empty-board game-type/four-by-four [_]
-  [nomark nomark nomark nomark
-   nomark nomark nomark nomark
-   nomark nomark nomark nomark
-   nomark nomark nomark nomark])
+  (vec (repeat 16 nomark)))
 
 (defmethod multi-empty-board game-type/three-cubed [_]
-  [nomark nomark nomark nomark nomark nomark nomark nomark nomark
-   nomark nomark nomark nomark nomark nomark nomark nomark nomark
-   nomark nomark nomark nomark nomark nomark nomark nomark nomark])
+  (vec (repeat 27 nomark)))
 
 (defn empty-board []
   (multi-empty-board {:game-type *game-type*}))

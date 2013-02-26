@@ -82,7 +82,3 @@
       (if (board/full-board? board)
         true
         false)))))
-
-(def next-player
-  (memoize (fn [mark]
-    (if (= board/x-mark mark) board/o-mark board/x-mark))))

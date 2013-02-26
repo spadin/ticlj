@@ -32,13 +32,14 @@
 
 
 (defn play
-  ([player-1 player-2] (play board/x-mark (board/empty-board) player-1 player-2))
-  ([mark board player-1 player-2]
+  ([player-1 player-2] (play (board/empty-board) player-1 player-2))
+  ([board player-1 player-2]
     (printer/print-board board)
     (if (rules/gameover? board)
       (printer/print-gameover (rules/winner board))
-      (recur (rules/next-player mark)
-             (-> board (board/set-mark-at-index mark (player/move (build-player player-1 player-2 mark) board)))
+      (recur (-> board
+               (board/set-mark-at-index (board/current-mark board)
+                                        (player/move (build-player player-1 player-2 (board/current-mark board)) board)))
               player-1 player-2))))
 
 (defn start-game []

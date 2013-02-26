@@ -113,5 +113,14 @@
     (let [board [x-mark x-mark x-mark
                  o-mark o-mark o-mark
                  x-mark x-mark o-mark]]
-      (should= true (full-board? board)))))
+      (should= true (full-board? board))))
 
+  (it "determines x is the first current player"
+    (let [board (empty-board)]
+      (should= x-mark
+               (current-mark board))))
+
+  (it "determines o is the second current player"
+    (let [board (vec (flatten (merge [] x-mark (repeat 8 nomark))))]
+      (should= o-mark
+               (current-mark board)))))

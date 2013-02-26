@@ -7,12 +7,6 @@
             [ticlj.rules.game-type :as game-type]))
 
 (describe "ticlj.rules.basic"
-  (it "determines the next player"
-    (should= board/o-mark
-             (next-player board/x-mark))
-    (should= board/x-mark
-             (next-player board/o-mark)))
-
   (context "3x3 game type"
     (it "determines that x is the winner"
       (should= board/x-mark

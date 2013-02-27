@@ -8,10 +8,10 @@
 (declare max-value)
 (declare min-value)
 
-(defrecord UnbeatableAI [mark]
+(defrecord UnbeatableAI []
   APlayer
-  (move [this board]
-    (alpha-beta (:mark this) board nil)))
+  (move [_ board]
+    (alpha-beta (board/current-mark board) board nil)))
 
 (def max-mark-winner?
   (memoize (fn [max-mark board]

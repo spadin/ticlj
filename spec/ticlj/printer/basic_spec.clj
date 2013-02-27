@@ -27,6 +27,11 @@
     (should= "What type of player is player 1?\n1. Human\n2. Unbeatable AI\n3. Medium AI\n4. Easy AI\n"
              (with-out-str (with-in-str "1" (prompt-player-type 1)))))
 
+  (it "returns Human string when user chooses 1."
+    (with-out-str (with-in-str "1"
+                    (should= "ticlj.player.human.Human"
+                             (prompt-player-type 1)))))
+
   (it "prints a gameover message when that x wins"
     (should= "Game over, x has won\n"
              (with-out-str (print-gameover board/x-mark))))

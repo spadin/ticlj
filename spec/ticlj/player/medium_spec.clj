@@ -14,7 +14,7 @@
     (let [board [board/x-mark board/o-mark board/x-mark
                  board/nomark board/o-mark board/nomark
                  board/o-mark board/nomark board/x-mark]
-          actual (player/move (MediumAI. board/x-mark) board)]
+          actual (player/move (MediumAI.) board)]
       (should= 5
                actual)))
 

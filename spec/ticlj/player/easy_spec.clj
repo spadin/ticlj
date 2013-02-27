@@ -24,6 +24,6 @@
     (let [board [board/x-mark board/nomark board/nomark
                  board/nomark board/nomark board/nomark
                  board/nomark board/nomark board/nomark]
-          actual (player/move (EasyAI. board/o-mark) board)]
+          actual (player/move (EasyAI.) board)]
     (should= 1
              actual))))

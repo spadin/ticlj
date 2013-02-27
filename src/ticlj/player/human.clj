@@ -4,10 +4,10 @@
             [ticlj.player.aplayer :as player])
   (:import [ticlj.player.aplayer APlayer]))
 
-(defrecord Human [mark]
+(defrecord Human []
   APlayer
-  (move [this board]
-    (try (board/validate-mark-at-index (:mark this) (printer/prompt-player (:mark this)) board)
+  (move [_ board]
+    (try (board/validate-mark-at-index (board/current-mark board) (printer/prompt-player (board/current-mark board)) board)
       (catch Exception e
         (println (str "Invalid move, please try again." e))
-        (player/move this board)))))
+        (player/move _ board)))))

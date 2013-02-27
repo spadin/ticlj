@@ -4,10 +4,10 @@
   (:import [ticlj.player.aplayer APlayer]))
 
 (declare make-move)
-(defrecord EasyAI [mark]
+(defrecord EasyAI []
   APlayer
   (move [this board]
-    (make-move (:mark this) board)))
+    (make-move (board/current-mark board) board)))
 
 (defn make-move [mark board]
   (first (board/get-empty-indices board)))

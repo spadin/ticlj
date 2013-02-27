@@ -1,13 +1,13 @@
 (ns ticlj.player.aplayer)
 
 (def ^:constant available-player-types [{:name "Human"
-                                         :value "Human"}
+                                         :value "ticlj.player.human.Human"}
                                         {:name "Unbeatable AI"
-                                         :value "UnbeatableAI"}
+                                         :value "ticlj.player.unbeatable.UnbeatableAI"}
                                         {:name "Medium AI"
-                                         :value "MediumAI"}
+                                         :value "ticlj.player.medium.MediumAI"}
                                         {:name "Easy AI"
-                                         :value "EasyAI"}])
+                                         :value "ticlj.player.easy.EasyAI"}])
 
 (defprotocol APlayer
-  (move [this board]))
+  (move [_ board]))

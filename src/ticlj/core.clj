@@ -13,40 +13,32 @@
            [ticlj.player.medium MediumAI]
            [ticlj.player.unbeatable UnbeatableAI]))
 
-(defn build-player [player-1 player-2 mark]
-  (if (= mark board/x-mark)
-    (if (= player-1 1)
-        (Human. mark)
-        (if (= player-1 2)
-            (UnbeatableAI. mark)
-            (if (= player-1 3)
-                (MediumAI. mark)
-                (EasyAI. mark))))
-    (if (= player-2 1)
-        (Human. mark)
-        (if (= player-2 2)
-            (UnbeatableAI. mark)
-            (if (= player-2 3)
-                (MediumAI. mark)
-                (EasyAI. mark))))))
+(def ^:dynamic *players* [])
 
+(defn construct-player [s]
+  (clojure.lang.Reflector/invokeConstructor (resolve (symbol s)) (to-array [])))
+
+(defn toggle-player [current-player]
+  (if (= current-player (first *players*))
+    (second *players*)
+    (first *players*)))
 
 (defn play
-  ([player-1 player-2] (play (board/empty-board) player-1 player-2))
-  ([board player-1 player-2]
+  ([] (play (board/empty-board) (first *players*)))
+  ([board player]
     (printer/print-board board)
     (if (rules/gameover? board)
       (printer/print-gameover (rules/winner board))
-      (recur (-> board
-               (board/set-mark-at-index (board/current-mark board)
-                                        (player/move (build-player player-1 player-2 (board/current-mark board)) board)))
-              player-1 player-2))))
+      (recur (-> board (board/set-mark-at-index
+                         (board/current-mark board)
+                         (player/move player board)))
+             (toggle-player player)))))
 
 (defn start-game []
-  (binding [*game-type* (printer/prompt-game-type)]
-    (let [player-1 (printer/prompt-player-type 1)
-          player-2 (printer/prompt-player-type 2)]
-      (play player-1 player-2))))
+  (binding [*game-type* (printer/prompt-game-type)
+            *players* [(construct-player (printer/prompt-player-type 1))
+                       (construct-player (printer/prompt-player-type 2))]]
+    (play)))
 
 (defn -main [& args]
   (start-game))

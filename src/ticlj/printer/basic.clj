@@ -81,7 +81,7 @@
       (if-not (empty? rest-choices) (recur rest-choices (inc choice-num)))))
   (let [selection-num (read-integer)
         idx (dec selection-num)]
-    (:value(nth choices idx))))
+    (:value (nth choices idx))))
 
 (defn prompt-player [mark]
   (prompt-integer (str "Player " mark " choose the index of an empty spot for your next move")))

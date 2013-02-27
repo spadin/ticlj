@@ -68,7 +68,9 @@
 (defn get-empty-indices [board]
   (vec (get-moves nomark board)))
 
-(defn current-mark [board]
+(defn current-mark
+  "Returns the mark of the player that goes next"
+  [board]
   (if (even? (+ (count (get-moves x-mark board)) (count (get-moves o-mark board))))
     x-mark
     o-mark))

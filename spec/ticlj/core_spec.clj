@@ -39,11 +39,11 @@
 
   (it "builds an EasyAI player"
     (should= true
-             (instance? EasyAI (build-player 3 1 board/x-mark))))
+             (instance? EasyAI (build-player 4 1 board/x-mark))))
 
   (it "builds a MediumAI player"
     (should= true
-             (instance? MediumAI (build-player 4 1 board/x-mark))))
+             (instance? MediumAI (build-player 3 2 board/x-mark))))
 
   (it "calls play with players and game type when game is started"
     (with-out-str (with-in-str (make-input '(1 1 1))

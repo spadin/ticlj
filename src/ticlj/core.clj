@@ -20,15 +20,15 @@
         (if (= player-1 2)
             (UnbeatableAI. mark)
             (if (= player-1 3)
-                (EasyAI. mark)
-                (MediumAI. mark))))
+                (MediumAI. mark)
+                (EasyAI. mark))))
     (if (= player-2 1)
         (Human. mark)
         (if (= player-2 2)
             (UnbeatableAI. mark)
             (if (= player-2 3)
-                (EasyAI. mark)
-                (MediumAI. mark))))))
+                (MediumAI. mark)
+                (EasyAI. mark))))))
 
 
 (defn play

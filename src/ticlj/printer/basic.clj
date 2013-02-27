@@ -1,5 +1,6 @@
 (ns ticlj.printer.basic
-  (:use [ticlj.rules.game-type :only (*game-type*)])
+  (:use [ticlj.rules.game-type :only (available-game-types *game-type*)]
+        [ticlj.player.aplayer :only (available-player-types)])
   (:require [ticlj.board.basic :as board]
             [ticlj.rules.game-type :as game-type]))
 
@@ -57,11 +58,21 @@
       (println "Invalid input, please try again.")
       (prompt-integer message))))
 
+(defn prompt-integer-choice [message choices]
+  (println message)
+  (loop [choices choices
+         number 1]
+    (let [choice (first choices)
+          rest-choices (rest choices)]
+      (println (str number ".") (:name choice))
+      (if-not (empty? rest-choices) (recur rest-choices (inc number)))))
+  (prompt-integer ""))
+
 (defn prompt-player [mark]
   (prompt-integer (str "Player " mark " choose the index of an empty spot for your next move")))
 
 (defn prompt-player-type [player-number]
-  (prompt-integer (str "What type of player is player " player-number "?\n1. Human\n2. Unbeatable AI\n3. Easy AI\n4. Medium AI")))
+  (prompt-integer-choice (str "What type of player is player " player-number "?") available-player-types))
 
 (defn print-gameover [winner]
   (if-not (nil? winner)
@@ -69,7 +80,7 @@
           (println "Game over, tied game")))
 
 (defn prompt-game-type []
-  (let [selection (prompt-integer (str "Please choose a game:\n1. 3x3 Tic Tac Toe\n2. 4x4 Tic Tac Toe"))]
+  (let [selection (prompt-integer-choice "Please choose a game:" available-game-types)]
     (if (= 1 selection)
         game-type/basic
         game-type/four-by-four)))

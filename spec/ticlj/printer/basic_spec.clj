@@ -24,7 +24,7 @@
       (should= 1 (prompt-integer "enter an interger")))))
 
   (it "prompts player 1 to choose type of player."
-    (should= "What type of player is player 1?\n1. Human\n2. Unbeatable AI\n3. Easy AI\n4. Medium AI\n"
+    (should= "What type of player is player 1?\n1. Human\n2. Unbeatable AI\n3. Medium AI\n4. Easy AI\n\n"
              (with-out-str (with-in-str "1" (prompt-player-type 1)))))
 
   (it "prints a gameover message when that x wins"
@@ -36,7 +36,7 @@
              (with-out-str (print-gameover nil))))
 
   (it "prompts user to choose a game type"
-    (should= "Please choose a game:\n1. 3x3 Tic Tac Toe\n2. 4x4 Tic Tac Toe\n"
+    (should= "Please choose a game:\n1. 3x3 Tic Tac Toe\n2. 4x4 Tic Tac Toe\n\n"
              (with-out-str (with-in-str "1" (prompt-game-type)))))
 
   (context "3x3 game type"

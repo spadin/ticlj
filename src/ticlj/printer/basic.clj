@@ -51,28 +51,43 @@
 (defn print-board [board]
   (multi-print-board {:game-type *game-type* :board board}))
 
-(defn prompt-integer [message]
-  (println message)
+(defn read-integer []
   (try (Integer/parseInt (read-line))
     (catch Exception e
       (println "Invalid input, please try again.")
-      (prompt-integer message))))
+      (read-integer))))
 
-(defn prompt-integer-choice [message choices]
+(defn prompt-integer [message]
+  (println message)
+  (read-integer))
+
+(defn prompt-choice
+  "Presents a message with a list of choices.
+   Returns the value of the choice.
+
+   format of choices:
+   [{:name  'Option #1 Display Text'
+     :value 'option-1-returned-value'}
+    {:name  'Option #2 Display Text'
+     :value 'option-2-returned-value'}
+  "
+  [message choices]
   (println message)
   (loop [choices choices
-         number 1]
+         choice-num 1]
     (let [choice (first choices)
           rest-choices (rest choices)]
-      (println (str number ".") (:name choice))
-      (if-not (empty? rest-choices) (recur rest-choices (inc number)))))
-  (prompt-integer ""))
+      (println (str choice-num ".") (:name choice))
+      (if-not (empty? rest-choices) (recur rest-choices (inc choice-num)))))
+  (let [selection-num (read-integer)
+        idx (dec selection-num)]
+    (:value(nth choices idx))))
 
 (defn prompt-player [mark]
   (prompt-integer (str "Player " mark " choose the index of an empty spot for your next move")))
 
 (defn prompt-player-type [player-number]
-  (prompt-integer-choice (str "What type of player is player " player-number "?") available-player-types))
+  (prompt-choice (str "What type of player is player " player-number "?") available-player-types))
 
 (defn print-gameover [winner]
   (if-not (nil? winner)
@@ -80,8 +95,4 @@
           (println "Game over, tied game")))
 
 (defn prompt-game-type []
-  (let [selection (prompt-integer-choice "Please choose a game:" available-game-types)]
-    (if (= 1 selection)
-        game-type/basic
-        game-type/four-by-four)))
-
+  (prompt-choice "Please choose a game:" available-game-types))

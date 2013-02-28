@@ -29,7 +29,7 @@
 
   (it "returns Human string when user chooses 1."
     (with-out-str (with-in-str "1"
-                    (should= "ticlj.player.human.Human"
+                    (should= "Human"
                              (prompt-player-type 1)))))
 
   (it "prints a gameover message when that x wins"

@@ -20,28 +20,28 @@
       (binding [*game-type* game-type/four-by-four] (it)))
 
     (it "returns a board with 16 spaces"
-        (should= 16
-                 (count (empty-board))))
+      (should= 16
+               (count (empty-board))))
 
     (it "doesn't throw an error when index is in proper range"
-        (should-not-throw (validate-mark-at-index x-mark 9 (empty-board))))
+      (should-not-throw (validate-mark-at-index x-mark 9 (empty-board))))
 
     (it "throws an error when index is not in proper range"
-        (should-throw Exception (validate-mark-at-index x-mark 16 (empty-board)))))
+      (should-throw Exception (validate-mark-at-index x-mark 16 (empty-board)))))
 
   (context "3x3x3 game-type"
+    (around [it]
+      (binding [*game-type* game-type/three-cubed] (it)))
+
     (it "returns a board with 27 spaces"
-      (binding [*game-type* game-type/three-cubed]
-        (should= 27
-                 (count (empty-board)))))
+      (should= 27
+               (count (empty-board))))
 
     (it "doesn't throw an error when index is in proper range"
-      (binding [*game-type* game-type/three-cubed]
-        (should-not-throw (validate-mark-at-index x-mark 16 (empty-board)))))
+      (should-not-throw (validate-mark-at-index x-mark 16 (empty-board))))
 
     (it "throws an error when index is not in proper range"
-      (binding [*game-type* game-type/three-cubed]
-        (should-throw Exception (validate-mark-at-index x-mark 27 (empty-board))))))
+      (should-throw Exception (validate-mark-at-index x-mark 27 (empty-board)))))
 
   (it "returns blank space when board index is not occupied"
     (should= nomark

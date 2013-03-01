@@ -1,8 +1,6 @@
 (ns ticlj.game.base.board-spec
   (:use [speclj.core]
         [ticlj.game.base.board]))
-        ;[ticlj.rules.game-type :only (*game-type*)])
-  ;(:require [ticlj.rules.game-type :as game-type]))
 
 (describe "ticlj.game.base.board"
   (with sample-board-state [:# :X :#

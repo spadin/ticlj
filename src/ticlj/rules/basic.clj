@@ -37,7 +37,6 @@
               (recur (merge wins (set (range from total board-size))) (inc from))
               wins))))
 
-
 (defmulti multi-winning-combinations :game-type)
 
 (defmethod multi-winning-combinations game-type/basic [_]

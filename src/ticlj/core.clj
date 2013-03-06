@@ -1,4 +1,4 @@
-(ns ticlj.new-core
+(ns ticlj.core
   (:use [ticlj.game]
         [ticlj.player]
         [ticlj.prompt]

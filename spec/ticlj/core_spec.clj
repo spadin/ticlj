@@ -1,9 +1,9 @@
-(ns ticlj.new-core-spec
+(ns ticlj.core-spec
   (:use [speclj.core]
         [ticlj.spec-helper]
-        [ticlj.new-core]))
+        [ticlj.core]))
 
-(describe "ticlj.new-core"
+(describe "ticlj.core"
   (it "calls play"
     (with-redefs [play (fn [game players board-state] :stubbed)]
       (with-out-str

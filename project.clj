@@ -7,4 +7,4 @@
             [lein-marginalia "0.7.1"]]
   :test-paths ["spec/"]
   :profiles {:dev {:dependencies [[lein-marginalia "0.7.1"]]}}
-  :main ticlj.new-core)
+  :main ticlj.core)

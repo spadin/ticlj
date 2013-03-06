@@ -9,6 +9,12 @@
 
 (defrecord ThreeByThreeGame []
   Game
+  (get-logic [this]
+    three-by-three-logic)
+  (get-ui [this]
+    three-by-three-ui)
+  (get-board [this]
+    three-by-three-board)
   (print-board [this board-state]
     (ui-protocol/print-board three-by-three-ui board-state))
   (display-gameover [this winner]

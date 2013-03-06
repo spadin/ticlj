@@ -1,8 +1,8 @@
-(ns ticlj.game.shared.printer-spec
+(ns ticlj.io.printer-spec
   (:use [speclj.core]
-        [ticlj.game.shared.printer]))
+        [ticlj.io.printer]))
 
-(describe "ticlj.game.shared.printer"
+(describe "ticlj.io.printer"
   (context "/print-line"
     (it "prints a message"
       (should= "This is a message.\n"

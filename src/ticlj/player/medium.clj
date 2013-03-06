@@ -1,15 +1,10 @@
 (ns ticlj.player.medium
-  (:use [ticlj.player.unbeatable]
-        [ticlj.rules.game-type :only (*game-type*)])
-  (:require [ticlj.player.aplayer :as player]
-            [ticlj.board.basic :as board]
-            [ticlj.rules.game-type :as game-type])
-  (:import [ticlj.player.aplayer APlayer]))
-
-(defn determine-max-depth []
-  (if (= *game-type* game-type/basic) 4 2))
+  (:use [ticlj.player.protocol]
+        [ticlj.player.unbeatable :only [alpha-beta]]))
 
 (defrecord MediumAI []
-  APlayer
-  (move [this board]
-    (alpha-beta (board/current-mark board) board 4)))
+  Player
+  (move [this game board-state]
+    (alpha-beta game board-state 4)))
+
+(def medium-ai-player (MediumAI.))

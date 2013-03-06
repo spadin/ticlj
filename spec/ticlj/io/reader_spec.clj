@@ -1,9 +1,9 @@
-(ns ticlj.game.shared.reader-spec
+(ns ticlj.io.reader-spec
   (:use [speclj.core]
         [ticlj.spec-helper]
-        [ticlj.game.shared.reader]))
+        [ticlj.io.reader]))
 
-(describe "ticlj.game.shared.reader"
+(describe "ticlj.io.reader"
   (context "#read-integer"
     (it "reads an integer from input"
       (with-out-str (with-in-str "1"
@@ -25,3 +25,4 @@
       (with-out-str (with-in-str "1"
         (should= 1
                 (read-integer-between 1 2)))))))
+

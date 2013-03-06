@@ -1,41 +1,43 @@
 (ns ticlj.player.unbeatable
-  (:require [ticlj.rules.basic :as rules]
-            [ticlj.board.basic :as board]
-            [ticlj.player.aplayer :as player])
-  (:import [ticlj.player.aplayer APlayer]))
+  (:use [ticlj.player.protocol]
+        [ticlj.game.protocol]
+        [ticlj.game.protocol.board :only [get-empty-indices]]))
 
 (declare alpha-beta)
 (declare max-value)
 (declare min-value)
 
 (defrecord UnbeatableAI []
-  APlayer
-  (move [_ board]
-    (alpha-beta (board/current-mark board) board nil)))
+  Player
+  (move [this game board-state]
+    (alpha-beta game board-state nil)))
+
+(def unbeatable-ai-player (UnbeatableAI.))
 
 (def max-mark-winner?
-  (memoize (fn [max-mark board]
-    (= (rules/winner board) max-mark))))
+  (memoize (fn [game max-mark board-state]
+    (= (winner game board-state) max-mark))))
 
 (def min-mark-winner?
-  (memoize (fn [max-mark board]
-    (let [winner (rules/winner board)]
+  (memoize (fn [game max-mark board-state]
+    (let [winner (winner game board-state)]
       (and
         (not (nil? winner))
         (not= winner max-mark))))))
 
 (def calculate-score
-  (memoize (fn [max-mark board depth ab-value]
-    (if (rules/gameover? board)
-      (if (max-mark-winner? max-mark board)
+  (memoize (fn [game max-mark board-state depth ab-value]
+    (if (gameover? game board-state)
+      (if (max-mark-winner? game max-mark board-state)
           (- 1000 depth)
-          (if (min-mark-winner? max-mark board)
+          (if (min-mark-winner? game max-mark board-state)
               (+ -1000 depth)
               (- 0 depth)))
       ab-value))))
 
-(defn alpha-beta [max-mark board max-depth]
-  (:index (max-value max-mark board -9999 9999 0 max-depth)))
+(defn alpha-beta [game board-state max-depth]
+  (let [max-mark (next-possible-mark game board-state)]
+    (:index (max-value game max-mark board-state -9999 9999 0 max-depth))))
 
 (defn determine-best-move [current-best test-move index max-node?]
   (let [best-move (if (nil? current-best)
@@ -51,21 +53,20 @@
   (and (not (nil? max-depth)) (> depth max-depth)))
 
 (def max-value
-  (memoize (fn [max-mark board alpha beta depth max-depth]
-    (if (or (rules/gameover? board) (max-depth-reached? depth max-depth))
-        {:score (calculate-score max-mark board depth alpha)}
-        (loop [empty-indices (board/get-empty-indices board)
+  (memoize (fn [game max-mark board-state alpha beta depth max-depth]
+    (if (or (gameover? game board-state) (max-depth-reached? depth max-depth))
+        {:score (calculate-score game max-mark board-state depth alpha)}
+        (loop [empty-indices (get-empty-indices (get-board game) board-state)
                best-move nil
                alpha alpha beta beta]
           (let [index (first empty-indices)
-                current-mark (board/current-mark board)
-                new-board (-> board (board/set-mark-at-index current-mark
-                                                   index))
+                new-board-state (set-mark-at-index game board-state index)
                 other-indices (rest empty-indices)
-                move (min-value max-mark new-board alpha beta (inc depth) max-depth)
+                move (min-value game max-mark new-board-state alpha beta (inc depth) max-depth)
                 best-move (determine-best-move best-move move index true)
                 alpha (max alpha (:score best-move))
                 cut-off? (> alpha beta)]
+
                 (if (and (not cut-off?) (not (empty? other-indices)))
                         (recur other-indices
                                best-move
@@ -73,18 +74,16 @@
                         (merge best-move {:alpha alpha}))))))))
 
 (def min-value
-  (memoize (fn [max-mark board alpha beta depth max-depth]
-    (if (or (rules/gameover? board) (max-depth-reached? depth max-depth))
-        {:score (calculate-score max-mark board depth beta)}
-        (loop [empty-indices (board/get-empty-indices board)
+  (memoize (fn [game max-mark board-state alpha beta depth max-depth]
+    (if (or (gameover? game board-state) (max-depth-reached? depth max-depth))
+        {:score (calculate-score game max-mark board-state depth beta)}
+        (loop [empty-indices (get-empty-indices (get-board game) board-state)
                best-move nil
                alpha alpha beta beta]
           (let [index (first empty-indices)
-                current-mark (board/current-mark board)
-                new-board (-> board (board/set-mark-at-index current-mark
-                                                   index))
+                new-board-state (set-mark-at-index game board-state index)
                 other-indices (rest empty-indices)
-                move (max-value max-mark new-board alpha beta (inc depth) max-depth)
+                move (max-value game max-mark new-board-state alpha beta (inc depth) max-depth)
                 best-move (determine-best-move best-move move index false)
                 beta (min beta (:score best-move))
                 cut-off? (> alpha beta)]

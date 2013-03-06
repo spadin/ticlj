@@ -9,6 +9,12 @@
 
 (defrecord FourByFourGame []
   Game
+  (get-logic [this]
+    four-by-four-logic)
+  (get-ui [this]
+    four-by-four-ui)
+  (get-board [this]
+    four-by-four-board)
   (print-board [this board-state]
     (ui-protocol/print-board four-by-four-ui board-state))
   (display-gameover [this winner]

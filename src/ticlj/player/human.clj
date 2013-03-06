@@ -1,13 +1,20 @@
 (ns ticlj.player.human
-  (:require [ticlj.printer.basic :as printer]
-            [ticlj.board.basic :as board]
-            [ticlj.player.aplayer :as player])
-  (:import [ticlj.player.aplayer APlayer]))
+  (:use [ticlj.player.protocol]
+        [ticlj.game.protocol]
+        [ticlj.game.protocol.board :only [valid-index?]]
+        [ticlj.prompt]
+        [ticlj.io.printer]))
 
 (defrecord Human []
-  APlayer
-  (move [_ board]
-    (try (board/validate-mark-at-index (board/current-mark board) (printer/prompt-player (board/current-mark board)) board)
-      (catch Exception e
-        (println (str "Invalid move, please try again." e))
-        (player/move _ board)))))
+  Player
+  (move [this game board-state]
+    (let [board (get-board game)
+          mark (next-possible-mark game board-state)
+          index (prompt-for-move mark)]
+      (if (valid-index? board board-state index)
+          index
+          (do
+            (print-line "Invalid input, please try again.")
+            (recur game board-state))))))
+
+(def human-player (Human.))

@@ -4,5 +4,5 @@
 
 (defn display-gameover [winner]
   (if (nil? winner)
-      (printer/print-line "Game over, tied game.")
-      (printer/print-line (str "Game over, " (name winner) " won."))))
+      (printer/print-line "Game over, tied game.\n")
+      (printer/print-line (str "Game over, " (name winner) " won.\n"))))

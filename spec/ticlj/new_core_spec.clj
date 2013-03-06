@@ -1,9 +1,7 @@
 (ns ticlj.new-core-spec
   (:use [speclj.core]
+        [ticlj.spec-helper]
         [ticlj.new-core]))
-
-(defn make-input [coll]
-  (apply str (interleave coll (repeat "\n"))))
 
 (describe "ticlj.new-core"
   (it "calls play"

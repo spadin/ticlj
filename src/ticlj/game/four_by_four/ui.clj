@@ -27,6 +27,7 @@
       (printer/print-line separator)
       (printer/print-line (line-string 2 board-state))
       (printer/print-line separator)
-      (printer/print-line (line-string 3 board-state)))))
+      (printer/print-line (line-string 3 board-state))
+      (printer/print-line ""))))
 
 (def four-by-four-ui (FourByFour.))

@@ -23,6 +23,7 @@
       (printer/print-line separator)
       (printer/print-line (line-string 1 board-state))
       (printer/print-line separator)
-      (printer/print-line (line-string 2 board-state)))))
+      (printer/print-line (line-string 2 board-state))
+      (printer/print-line ""))))
 
 (def three-by-three-ui (ThreeByThreeUi.))

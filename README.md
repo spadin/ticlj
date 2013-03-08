@@ -1,3 +1,5 @@
+!["Build status"](https://api.travis-ci.org/spadin/ticlj.png)
+
 # Ticlj
 
 ## A Command-line Tic Tac Toe game in Clojure

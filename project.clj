@@ -3,8 +3,10 @@
   :url "https://github.com/spadin/ticlj"
   :dependencies [[org.clojure/clojure "1.5.0"]]
   :plugins [[speclj "2.5.0"]
-            [lein-marginalia "0.7.1"]]
+            [lein-marginalia "0.7.1"]
+            [lein-clojars "0.9.1"]]
   :test-paths ["spec/"]
   :profiles {:dev {:dependencies [[lein-marginalia "0.7.1"]
-                                  [speclj "2.5.0"]]}}
+                                  [speclj "2.5.0"]
+                                  [lein-clojars "0.9.1"]]}}
   :main ticlj.core)

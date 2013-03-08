@@ -1,4 +1,4 @@
-!["Build status"](https://api.travis-ci.org/spadin/ticlj.png)
+[![Build Status](https://travis-ci.org/spadin/ticlj.png)](https://travis-ci.org/spadin/ticlj)
 
 # Ticlj
 
